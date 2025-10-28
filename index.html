@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premier Pediatric Dental Care | Your Practice Name</title>
+    <title>Rockland Pediatric Dental and Orthodontics | New City, NY</title>
     <style>
         * {
             margin: 0;
@@ -37,15 +37,20 @@
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: #4A90E2;
+            max-width: 300px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
+        }
+
+        nav li {
+            position: relative;
         }
 
         nav a {
@@ -53,10 +58,53 @@
             color: #333;
             font-weight: 500;
             transition: color 0.3s;
+            cursor: pointer;
+            display: block;
+            padding: 0.5rem 0;
         }
 
         nav a:hover {
             color: #4A90E2;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 280px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #4A90E2;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▾';
+            font-size: 0.8em;
         }
 
         /* Hero Section */
@@ -102,10 +150,15 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
-        /* About Section */
-        .about {
+        /* Content Sections */
+        .content-section {
+            display: none;
             padding: 80px 20px;
             background: #f8f9fa;
+        }
+
+        .content-section.active {
+            display: block;
         }
 
         .container {
@@ -116,8 +169,54 @@
         .section-title {
             text-align: center;
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        .service-detail {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .service-detail h3 {
+            color: #4A90E2;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-detail p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .service-detail ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-detail li {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 20px;
+            background: #f8f9fa;
         }
 
         .about-content {
@@ -133,7 +232,7 @@
             color: #555;
         }
 
-        /* Services Section */
+        /* Services Overview Grid */
         .services {
             padding: 80px 20px;
             background: white;
@@ -153,6 +252,7 @@
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             border: 2px solid transparent;
+            cursor: pointer;
         }
 
         .service-card:hover {
@@ -175,45 +275,6 @@
         .service-card p {
             color: #666;
             line-height: 1.6;
-        }
-
-        /* Testimonials Section */
-        .testimonials {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .testimonial-text {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            text-align: right;
-        }
-
-        .stars {
-            color: #ffd700;
-            margin-bottom: 0.5rem;
         }
 
         /* Team Section */
@@ -290,7 +351,6 @@
             margin: 0 auto;
         }
 
-        /* Navigation Arrows */
         .carousel-arrow {
             position: absolute;
             top: 50%;
@@ -323,7 +383,6 @@
             right: 0;
         }
 
-        /* Dots Navigation */
         .carousel-dots {
             display: flex;
             justify-content: center;
@@ -352,33 +411,46 @@
             background: #999;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .team-carousel-container {
-                padding: 0 60px;
-            }
-
-            .carousel-arrow {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .team-photo {
-                width: 200px;
-                height: 200px;
-            }
-
-            .team-member h3 {
-                font-size: 1.6rem;
-            }
-
-            .team-carousel {
-                min-height: 550px;
-            }
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
 
-        /* Contact Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .stars {
+            color: #ffd700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact */
         .contact {
             padding: 80px 20px;
             background: #f8f9fa;
@@ -386,9 +458,10 @@
         }
 
         .contact-info {
-            max-width: 600px;
+            max-width: 800px;
             margin: 3rem auto;
             display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
@@ -402,6 +475,30 @@
         .contact-item h3 {
             color: #667eea;
             margin-bottom: 0.5rem;
+        }
+
+        .hours-table {
+            margin: 2rem auto;
+            max-width: 600px;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .hours-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hours-table td {
+            padding: 0.8rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .hours-table td:first-child {
+            font-weight: 600;
+            color: #667eea;
         }
 
         /* Footer */
@@ -422,18 +519,48 @@
                 font-size: 2rem;
             }
 
-            .hero p {
-                font-size: 1.1rem;
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
             }
 
-            nav ul {
-                gap: 1rem;
-                flex-wrap: wrap;
+            .dropdown-content {
+                position: relative;
+                box-shadow: none;
+                display: none;
+            }
+
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+
+            .team-carousel-container {
+                padding: 0 60px;
+            }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
             }
 
             .section-title {
                 font-size: 2rem;
             }
+        }
+
+        .back-button {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            transition: background 0.3s;
+        }
+
+        .back-button:hover {
+            background: #5578d9;
         }
     </style>
 </head>
@@ -441,237 +568,591 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">🦷 Your Dental Practice</div>
+            <div class="logo">🦷 Rockland Pediatric Dental and Orthodontics</div>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a onclick="showSection('home')">Home</a></li>
+                    <li><a onclick="showSection('about')">About</a></li>
+                    <li class="dropdown">
+                        <a>Services</a>
+                        <div class="dropdown-content">
+                            <a onclick="showSection('pediatric-overview')">Pediatric Dentistry</a>
+                            <a onclick="showSection('orthodontics-overview')">Orthodontics</a>
+                            <a onclick="showSection('general-dentistry')">General Dentistry</a>
+                            <a onclick="showSection('dental-sealants')">Dental Sealants</a>
+                            <a onclick="showSection('fluoride-treatment')">Fluoride Treatment</a>
+                            <a onclick="showSection('sedation-dentistry')">Sedation Dentistry</a>
+                            <a onclick="showSection('special-needs')">Special Needs Dentistry</a>
+                            <a onclick="showSection('emergency-care')">Emergency Care</a>
+                        </div>
+                    </li>
+                    <li><a onclick="showSection('team')">Our Doctors</a></li>
+                    <li><a onclick="showSection('testimonials')">Reviews</a></li>
+                    <li><a onclick="showSection('contact')">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Exceptional Pediatric Dental Care</h1>
-            <p>Creating healthy smiles in a comfortable, family-friendly environment where your child can feel at home.</p>
-            <a href="#contact" class="cta-button">Schedule an Appointment</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">Welcome to Our Practice</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>We are dedicated to providing comprehensive dental care for children in a warm and welcoming atmosphere. Our experienced team understands that every child is unique, and we take the time to get to know your family's specific needs.</p>
-                </div>
-                <div class="about-text">
-                    <p>From your child's first dental visit to orthodontic care, we offer a complete range of services designed to keep young smiles healthy and bright. Our office is equipped with the latest technology and designed to make every visit comfortable and stress-free.</p>
-                </div>
+    <!-- Home Section -->
+    <section id="home-section">
+        <div class="hero" id="home">
+            <div class="hero-content">
+                <h1>Rockland Pediatric Dental and Orthodontics</h1>
+                <p>Creating healthy smiles for children and families in a comfortable, welcoming environment.</p>
+                <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule an Appointment</a>
             </div>
         </div>
-    </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🦷</div>
-                    <h3>Preventive Care</h3>
-                    <p>Regular checkups, cleanings, and fluoride treatments to keep your child's teeth healthy and prevent cavities.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">😁</div>
-                    <h3>Orthodontics</h3>
-                    <p>Expert orthodontic care including braces and Invisalign to create beautiful, straight smiles.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✨</div>
-                    <h3>Cosmetic Dentistry</h3>
-                    <p>Advanced cosmetic treatments to enhance your child's smile with confidence.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🎯</div>
-                    <h3>Emergency Care</h3>
-                    <p>Prompt attention for dental emergencies to relieve pain and protect your child's oral health.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🌟</div>
-                    <h3>Sedation Dentistry</h3>
-                    <p>Safe and effective sedation options for anxious children or complex procedures.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👶</div>
-                    <h3>Early Childhood</h3>
-                    <p>Specialized care for infants and toddlers to establish healthy dental habits early.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="team" id="team">
-        <div class="container">
-            <h2 class="section-title">Meet Our Doctors</h2>
-            <div class="team-carousel-container">
-                <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
-                <div class="team-carousel">
-                    <div class="team-carousel-inner">
-                        <div class="team-member active">
-                            <img src="dr-schadt.jpg" alt="Dr. Emily Schadt" class="team-photo">
-                            <h3>Dr. Emily Schadt</h3>
-                            <p class="title">Orthodontist</p>
-                            <p>Dr. Schadt specializes in orthodontics and takes pride in creating beautiful, healthy smiles. She stays current with the latest techniques to provide the best care possible.</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="dr-hermann.jpg" alt="Dr. Dorit Hermann" class="team-photo">
-                            <h3>Dr. Dorit Hermann</h3>
-                            <p class="title">Pediatric Dentist</p>
-                            <p>Dr. Hermann is passionate about creating positive dental experiences for children and helping them develop healthy habits for life through gentle, compassionate care.</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="dr-chaly.jpg" alt="Dr. Anne Chaly" class="team-photo">
-                            <h3>Dr. Anne Chaly</h3>
-                            <p class="title">Pediatric Dentist</p>
-                            <p>Dr. Chaly brings warmth and expertise to every patient interaction. She believes in building trust with children through patience and understanding.</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="dr-marcovich.jpg" alt="Dr. Clarissa Marcovich" class="team-photo">
-                            <h3>Dr. Clarissa Marcovich</h3>
-                            <p class="title">Pediatric Dentist</p>
-                            <p>Dr. Marcovich is dedicated to providing exceptional pediatric dental care in a comfortable, child-friendly environment where every visit is a positive experience.</p>
-                        </div>
-                        <div class="team-member">
-                            <img src="dr-paul.jpg" alt="Dr. Jaby Paul" class="team-photo">
-                            <h3>Dr. Jaby Paul</h3>
-                            <p class="title">Adult Dentist</p>
-                            <p>Dr. Paul provides comprehensive dental care for adults with a focus on personalized treatment plans and patient comfort.</p>
-                        </div>
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title">Welcome to Our Practice</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>We are dedicated to providing comprehensive dental care for children and families in New City, NY. Our multi-specialty practice offers pediatric dentistry, orthodontics, and general dentistry all under one roof.</p>
+                    </div>
+                    <div class="about-text">
+                        <p>From your child's first dental visit to orthodontic care and adult dentistry, we offer a complete range of services. Our experienced team takes the time to understand your family's unique needs and provide individualized, compassionate care.</p>
                     </div>
                 </div>
-                <button class="carousel-arrow next" onclick="changeSlide(1)">❯</button>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card" onclick="showSection('pediatric-overview')">
+                        <div class="service-icon">👶</div>
+                        <h3>Pediatric Dentistry</h3>
+                        <p>Specialized dental care for infants, children, and teens in a fun, friendly environment.</p>
+                    </div>
+                    <div class="service-card" onclick="showSection('orthodontics-overview')">
+                        <div class="service-icon">😁</div>
+                        <h3>Orthodontics</h3>
+                        <h3>Expert orthodontic care including braces and clear aligners for beautiful smiles.</p>
+                    </div>
+                    <div class="service-card" onclick="showSection('general-dentistry')">
+                        <div class="service-icon">🦷</div>
+                        <h3>General Dentistry</h3>
+                        <p>Comprehensive dental care for adults, because parents deserve great care too!</p>
+                    </div>
+                    <div class="service-card" onclick="showSection('sedation-dentistry')">
+                        <div class="service-icon">🌟</div>
+                        <h3>Sedation Dentistry</h3>
+                        <p>Safe and effective sedation options for anxious children or complex procedures.</p>
+                    </div>
+                    <div class="service-card" onclick="showSection('special-needs')">
+                        <div class="service-icon">💙</div>
+                        <h3>Special Needs Care</h3>
+                        <p>Specialized care for children with physical, emotional, or developmental needs.</p>
+                    </div>
+                    <div class="service-card" onclick="showSection('emergency-care')">
+                        <div class="service-icon">🚨</div>
+                        <h3>Emergency Care</h3>
+                        <p>Prompt attention for dental emergencies to relieve pain and protect oral health.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team" id="team">
+            <div class="container">
+                <h2 class="section-title">Meet Our Doctors</h2>
+                <div class="team-carousel-container">
+                    <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
+                    <div class="team-carousel">
+                        <div class="team-carousel-inner">
+                            <div class="team-member active">
+                                <img src="dr-schadt.jpg" alt="Dr. Emily Schadt" class="team-photo">
+                                <h3>Dr. Emily Schadt</h3>
+                                <p class="title">Orthodontist</p>
+                                <p>Dr. Schadt loves the field of orthodontics and the opportunity it gives her to build relationships with her patients and the community. She earned her Bachelor of Science in Human Physiology from Boston University and her Doctor of Dental Medicine from Tufts University, graduating Summa Cum Laude.</p>
+                            </div>
+                            <div class="team-member">
+                                <img src="dr-hermann.jpg" alt="Dr. Dorit Hermann" class="team-photo">
+                                <h3>Dr. Dorit Hermann</h3>
+                                <p class="title">Pediatric Dentist</p>
+                                <p>Dr. Hermann is passionate about creating positive dental experiences for children and helping them develop healthy habits for life through gentle, compassionate care.</p>
+                            </div>
+                            <div class="team-member">
+                                <img src="dr-chaly.jpg" alt="Dr. Anne Chaly" class="team-photo">
+                                <h3>Dr. Anne Chaly</h3>
+                                <p class="title">Pediatric Dentist</p>
+                                <p>Dr. Chaly brings warmth and expertise to every patient interaction. She believes in building trust with children through patience and understanding.</p>
+                            </div>
+                            <div class="team-member">
+                                <img src="dr-marcovich.jpg" alt="Dr. Clarissa Marcovich" class="team-photo">
+                                <h3>Dr. Clarissa Marcovich</h3>
+                                <p class="title">Pediatric Dentist</p>
+                                <p>Dr. Marcovich is dedicated to providing exceptional pediatric dental care in a comfortable, child-friendly environment where every visit is a positive experience.</p>
+                            </div>
+                            <div class="team-member">
+                                <img src="dr-paul.jpg" alt="Dr. Jaby Paul" class="team-photo">
+                                <h3>Dr. Jaby Paul</h3>
+                                <p class="title">General Dentist</p>
+                                <p>Dr. Paul provides comprehensive dental care for adults with a focus on personalized treatment plans and patient comfort.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-arrow next" onclick="changeSlide(1)">❯</button>
+                    
+                    <div class="carousel-dots">
+                        <button class="dot active" onclick="goToSlide(0)"></button>
+                        <button class="dot" onclick="goToSlide(1)"></button>
+                        <button class="dot" onclick="goToSlide(2)"></button>
+                        <button class="dot" onclick="goToSlide(3)"></button>
+                        <button class="dot" onclick="goToSlide(4)"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Parents Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"The staff is incredible! From the front desk to the dental assistants to the dentist herself! They made my son's first dentist appointment such a great experience. The office is lovely and super kid friendly!"</p>
+                        <p class="testimonial-author">- Cee L.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Great experience for my daughter. She was nervous in the beginning but the hygienist was gentle and it eased her fears. She also mentioned how nice Dr. Hermann was."</p>
+                        <p class="testimonial-author">- Shanise</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Going to a pediatric dentistry office was the best decision I made for my child. Office is clean and child-friendly. The staff and Dr. Hermann were calm, patient, and attentive to my concerns."</p>
+                        <p class="testimonial-author">- Yolanda A.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Highly recommend this place. My kids were so happy and exciting leaving. Perfect place for a nervous child!"</p>
+                        <p class="testimonial-author">- Diana S.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"Every single time we speak to anyone on the phone or visit the office, the staff is always friendly and extremely helpful with any questions we have!"</p>
+                        <p class="testimonial-author">- Lisa B.</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">"My kids love going to this place! My 2-year-old even pretends to have cavities so she can see her dentist!"</p>
+                        <p class="testimonial-author">- Kathryn S.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Ready to schedule an appointment? We'd love to hear from you!</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📞 Phone</h3>
+                        <p><strong>845-634-8900</strong></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📍 Location</h3>
+                        <p>238 N. Main St.<br>New City, NY 10956</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>🌍 We Speak</h3>
+                        <p>English, Hebrew, Hungarian,<br>Malayalam, Spanish</p>
+                    </div>
+                </div>
+
+                <div class="hours-table">
+                    <h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.5rem;">Office Hours</h3>
+                    <table>
+                        <tr>
+                            <td>Monday</td>
+                            <td>8:30 AM - 6:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>8:30 AM - 6:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>9:00 AM - 7:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>9:00 AM - 7:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Friday</td>
+                            <td>8:30 AM - 2:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Saturday*</td>
+                            <td>8:30 AM - 2:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday</td>
+                            <td>Closed</td>
+                        </tr>
+                    </table>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">*September – June</p>
+                </div>
+
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white; margin-top: 2rem;">Call Now to Schedule</a>
+            </div>
+        </section>
+    </section>
+
+    <!-- PEDIATRIC DENTISTRY PAGE -->
+    <section id="pediatric-overview" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Pediatric Dentistry</h1>
+            <p class="section-subtitle">Caring for Kids and Families</p>
+
+            <div class="service-detail">
+                <p>Pediatric dentistry is where our heart is. We started our practice to make dental care fun, friendly, and accessible for kids. And the beautiful thing is, the parents that came in with their children felt so comfortable and confident with our work, that they started asking us if they could come here, too!</p>
                 
-                <!-- Dots Navigation -->
-                <div class="carousel-dots">
-                    <button class="dot active" onclick="goToSlide(0)"></button>
-                    <button class="dot" onclick="goToSlide(1)"></button>
-                    <button class="dot" onclick="goToSlide(2)"></button>
-                    <button class="dot" onclick="goToSlide(3)"></button>
-                    <button class="dot" onclick="goToSlide(4)"></button>
-                </div>
+                <p>That's how our dental practice has grown organically to include pediatric dentistry, adult dentistry and orthodontics. It all started with our wonderful dental care for children. When your children visit our office, you and they can both feel relaxed knowing that your comfort and care is our priority.</p>
+
+                <h3>Our Pediatric Services Include:</h3>
+                <ul>
+                    <li><strong>Dental Sealants</strong> - Protective coatings for molars</li>
+                    <li><strong>Fluoride Treatment</strong> - Strengthening tooth enamel</li>
+                    <li><strong>Frenectomy/Tongue-Tie & Lip-Tie</strong> - Corrective procedures</li>
+                    <li><strong>Hospital Dentistry For Children</strong> - Specialized hospital-based care</li>
+                    <li><strong>Pediatric Dental Cleanings & Exams</strong> - Routine preventive care</li>
+                    <li><strong>Pediatric Sedation Dentistry</strong> - For anxious or special needs children</li>
+                    <li><strong>Pediatric Restorative Dentistry</strong> - Fillings, crowns, and repairs</li>
+                    <li><strong>Silver Diamine Fluoride Treatment</strong> - Non-invasive cavity treatment</li>
+                    <li><strong>Special Needs Dentistry</strong> - Specialized care for children with disabilities</li>
+                    <li><strong>Sports Mouth Guards</strong> - Custom protection for young athletes</li>
+                    <li><strong>Your Child's First Visit</strong> - Gentle introduction to dental care</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>What Happens on A Child's First Visit?</h3>
+                <ul>
+                    <li>Tour our office and meet our friendly team!</li>
+                    <li>Teeth cleaning and fluoride treatment</li>
+                    <li>Parents chat about diet, oral care and overall health care</li>
+                    <li>X-rays may be recommended if deemed helpful and necessary</li>
+                    <li>Parents meet with a treatment coordinator to discuss next steps and answer questions</li>
+                </ul>
+                <p>And, if anything arises after you leave our office, you can call us anytime!</p>
+            </div>
+
+            <div class="service-detail">
+                <h3>Pregnant? You Can Start Supporting Baby's Teeth Now!</h3>
+                <p>Did you know that baby teeth begin to form around the sixth or seventh week of pregnancy? And that adult teeth begin to form in the last months of pregnancy? A nutritious diet will help assure your unborn baby is getting the nutrients needed for the development of healthy teeth and body. We would be happy to talk with you about the dos and do nots of pregnancy nutrition for optimal oral health — for mom and baby!</p>
+            </div>
+
+            <div class="service-detail">
+                <h3>Oral Health As Your Child Grows</h3>
+                
+                <p><strong>Babies:</strong> We follow the guidelines of the Academy of Pediatric Dentistry while recommending that you bring your baby in for an initial visit by their first birthday. We will go over how you can get a jump on great oral health for your child, including some common misconceptions and risks that may lead to dental disease!</p>
+
+                <p><strong>Formative Years:</strong> Bi-annual check-ups (every six months) will help us monitor the development and health of your child's teeth. Plus, the more you and your child visit, the more comfortable he or she will be with the dentist.</p>
+
+                <p><strong>Teens:</strong> When kids hit their teens, they often become more concerned with appearance. When they don't love their smile, it can make them feel self-conscious. We have special training to understand the needs of teens and the emotional importance of a healthy smile. We've got this!</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule an Appointment</a>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
+    <!-- ORTHODONTICS PAGE -->
+    <section id="orthodontics-overview" class="content-section">
         <div class="container">
-            <h2 class="section-title">What Parents Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"The staff is incredible! They made my son's first dentist appointment such a great experience. The office is lovely and super kid friendly. Highly recommend!"</p>
-                    <p class="testimonial-author">- Sarah M.</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Great experience for my daughter. She was nervous in the beginning but the staff was gentle and it eased her fears. They were so patient and kind!"</p>
-                    <p class="testimonial-author">- Jennifer L.</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Going to this pediatric dentistry office was the best decision I made for my child. The office is clean and child-friendly. The staff was calm, patient, and attentive to my concerns."</p>
-                    <p class="testimonial-author">- Michael P.</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"My kids were so happy and excited leaving. This is the perfect place for a nervous child. They make every visit fun and comfortable!"</p>
-                    <p class="testimonial-author">- Diana S.</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"Every single time we visit, the staff is always friendly and extremely helpful with any questions we have. Such a professional and caring team!"</p>
-                    <p class="testimonial-author">- Lisa B.</p>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p class="testimonial-text">"My kids love going to this place! My daughter even pretends to have cavities so she can see her dentist. They've made dental visits something to look forward to!"</p>
-                    <p class="testimonial-author">- Kathryn S.</p>
-                </div>
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Orthodontics</h1>
+            <p class="section-subtitle">We Want You to Love Your Smile</p>
+
+            <div class="service-detail">
+                <p>Kids, tweens, and adults come to us for smile support, and we love creating great smiles for all of them! Come in for an initial consultation and we'll customize a treatment plan for your unique goals and needs.</p>
+                
+                <p>We offer a variety of orthodontic treatment options, from traditional braces to clear retainers and everything in between. Dr. Emily Schadt and our orthodontic team stay current with the latest techniques to provide the best care possible.</p>
+
+                <h3>Orthodontic Services:</h3>
+                <ul>
+                    <li><strong>Traditional Braces</strong> - Time-tested, effective treatment</li>
+                    <li><strong>Clear Aligners</strong> - Discreet orthodontic correction</li>
+                    <li><strong>Retainers</strong> - Maintaining your beautiful smile</li>
+                    <li><strong>Early Intervention</strong> - Phase I treatment for children</li>
+                    <li><strong>Adult Orthodontics</strong> - It's never too late for a beautiful smile</li>
+                </ul>
+            </div>
+
+            <div class="service-detail">
+                <h3>Why Choose Our Orthodontic Care?</h3>
+                <p>Dr. Emily Schadt earned her Bachelor of Science in Human Physiology from Boston University and her Doctor of Dental Medicine from Tufts University School of Dental Medicine, graduating Summa Cum Laude. She loves building relationships with her patients and the community, making sure every visit is comfortable and every treatment plan is personalized.</p>
+                
+                <p>Whether you're looking for orthodontic care for yourself or your child, we're here to help you achieve the smile you've always wanted!</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule a Consultation</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <!-- GENERAL DENTISTRY PAGE -->
+    <section id="general-dentistry" class="content-section">
         <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p style="font-size: 1.2rem; color: #666; margin-bottom: 1rem;">Ready to schedule an appointment? We'd love to hear from you!</p>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h3>📞 Phone</h3>
-                    <p>(555) 123-4567</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📧 Email</h3>
-                    <p>info@yourpractice.com</p>
-                </div>
-                <div class="contact-item">
-                    <h3>📍 Location</h3>
-                    <p>123 Main Street<br>Your City, ST 12345</p>
-                </div>
-                <div class="contact-item">
-                    <h3>⏰ Hours</h3>
-                    <p>Mon-Fri: 8:00 AM - 5:00 PM<br>Sat: 9:00 AM - 2:00 PM</p>
-                </div>
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">General Dentistry</h1>
+            <p class="section-subtitle">Comprehensive Care for Adults</p>
+
+            <div class="service-detail">
+                <p>While we started as a pediatric dental practice, we quickly realized that parents deserve great dental care too! Dr. Jaby Paul provides comprehensive general dentistry services for adults, so your whole family can receive quality care under one roof.</p>
+
+                <h3>Adult Dental Services:</h3>
+                <ul>
+                    <li><strong>Routine Cleanings & Exams</strong> - Preventive care to keep your smile healthy</li>
+                    <li><strong>Restorative Dentistry</strong> - Fillings, crowns, and bridges</li>
+                    <li><strong>Cosmetic Dentistry</strong> - Enhancing your smile's appearance</li>
+                    <li><strong>Periodontal Care</strong> - Gum disease prevention and treatment</li>
+                    <li><strong>Emergency Dental Care</strong> - Prompt attention when you need it most</li>
+                </ul>
+
+                <p>Dr. Paul focuses on personalized treatment plans and patient comfort, ensuring every visit is a positive experience. Whether you need a routine cleaning or more complex dental work, we're here to help!</p>
             </div>
-            <a href="#" class="cta-button" style="background: #667eea; color: white; margin-top: 2rem;">Book Your Appointment Today</a>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Book Your Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEDATION DENTISTRY PAGE -->
+    <section id="sedation-dentistry" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Sedation Dentistry</h1>
+            <p class="section-subtitle">Is Sedation Dentistry Safe for Kids?</p>
+
+            <div class="service-detail">
+                <h3>Your Child's Safety and Comfort Are Our Top Priority</h3>
+                <p>It's natural for kids to feel a little nervous coming to the dentist. They may associate it with going to the doctor's office when they were sick or needed a shot. That's why we offer safe and effective sedation options to help anxious children feel comfortable during their dental procedures.</p>
+
+                <h3>Sedation Options We Offer:</h3>
+                <ul>
+                    <li><strong>Nitrous Oxide (Laughing Gas)</strong> - Mild sedation that helps children relax while remaining conscious and responsive</li>
+                    <li><strong>Oral Sedation</strong> - Medication taken by mouth to reduce anxiety</li>
+                    <li><strong>IV Sedation</strong> - Deeper sedation for more complex procedures or highly anxious patients</li>
+                </ul>
+
+                <h3>Safety First</h3>
+                <p>Our pediatric dentists have comprehensive education and training in sedation and anesthesia techniques. We carefully evaluate each child to determine the most appropriate sedation option and monitor them closely throughout the procedure.</p>
+
+                <p>Sedation dentistry allows us to:</p>
+                <ul>
+                    <li>Complete necessary dental work in fewer appointments</li>
+                    <li>Reduce anxiety and fear associated with dental visits</li>
+                    <li>Help children who have difficulty sitting still</li>
+                    <li>Treat children with special needs more effectively</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Discuss Sedation Options</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIAL NEEDS DENTISTRY PAGE -->
+    <section id="special-needs" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Special Needs Dentistry</h1>
+            <p class="section-subtitle">Making Dentistry Safe and Comfortable for Kids with Disabilities</p>
+
+            <div class="service-detail">
+                <h3>Children with Disabilities Receive Comfort and Care at Our Practice</h3>
+                <p>Children with disabilities have unique needs when it comes to accessibility and care at the dentist. Their oral health and comfort are our top priority, and we will work with you and your child to provide specialized dental care in a supportive environment.</p>
+
+                <h3>Our Experience with Special Needs Patients</h3>
+                <p>Our advanced training allows us to understand and work with children with special needs, whether physical, emotional or both. We provide special planning and treatment for children with:</p>
+                <ul>
+                    <li>Congenital heart disease</li>
+                    <li>Epilepsy</li>
+                    <li>Diabetes</li>
+                    <li>Cerebral palsy</li>
+                    <li>Down syndrome</li>
+                    <li>Autism spectrum disorders</li>
+                    <li>Oral clefts</li>
+                    <li>And many other conditions</li>
+                </ul>
+
+                <h3>Specialized Care Approach</h3>
+                <p>Children with certain conditions may be more susceptible to delayed or accelerated tooth eruption, bite problems, missing or extra teeth, and other issues. Our experienced pediatric dentists have comprehensive education and training in behavior management, sedation, and anesthesia techniques.</p>
+
+                <p>We take the time to:</p>
+                <ul>
+                    <li>Understand your child's specific needs and challenges</li>
+                    <li>Create a comfortable, non-threatening environment</li>
+                    <li>Develop individualized treatment plans</li>
+                    <li>Work at your child's pace</li>
+                    <li>Communicate clearly with parents and caregivers</li>
+                </ul>
+
+                <p>You can feel comfortable knowing your children will receive the very best treatment based on their unique, individual needs.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule a Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DENTAL SEALANTS PAGE -->
+    <section id="dental-sealants" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Dental Sealants</h1>
+            <p class="section-subtitle">Protecting Your Child's Teeth</p>
+
+            <div class="service-detail">
+                <h3>What Are Dental Sealants?</h3>
+                <p>Dental sealants are thin, protective coatings applied to the chewing surfaces of back teeth (molars). They act as a barrier, protecting teeth from decay-causing bacteria and food particles.</p>
+
+                <h3>Benefits of Dental Sealants:</h3>
+                <ul>
+                    <li>Prevent cavities in molars and premolars</li>
+                    <li>Quick and painless application</li>
+                    <li>Can last several years with proper care</li>
+                    <li>Especially beneficial for children and teens</li>
+                    <li>Cost-effective preventive treatment</li>
+                </ul>
+
+                <h3>The Sealant Process</h3>
+                <p>Applying sealants is simple, painless, and takes only a few minutes per tooth:</p>
+                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li>The tooth is cleaned and dried</li>
+                    <li>An acidic gel is applied to roughen the tooth surface</li>
+                    <li>The tooth is rinsed and dried again</li>
+                    <li>The sealant is painted onto the tooth enamel</li>
+                    <li>A special light hardens the sealant</li>
+                </ol>
+
+                <p>Sealants are most commonly recommended for children when their permanent molars come in, typically between ages 6 and 12.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Ask About Sealants</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLUORIDE TREATMENT PAGE -->
+    <section id="fluoride-treatment" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Fluoride Treatment</h1>
+            <p class="section-subtitle">Strengthening Your Child's Teeth</p>
+
+            <div class="service-detail">
+                <h3>What Is Fluoride Treatment?</h3>
+                <p>Fluoride is a natural mineral that helps prevent cavities by making tooth enamel more resistant to acid attacks from bacteria and sugars in the mouth. Professional fluoride treatments provide a higher concentration of fluoride than what's in toothpaste or drinking water.</p>
+
+                <h3>Benefits of Fluoride Treatment:</h3>
+                <ul>
+                    <li>Strengthens tooth enamel</li>
+                    <li>Prevents tooth decay</li>
+                    <li>Can reverse early signs of cavities</li>
+                    <li>Safe and effective for children</li>
+                    <li>Quick application during regular dental visits</li>
+                </ul>
+
+                <h3>What to Expect</h3>
+                <p>Fluoride treatment is quick and painless. We apply a fluoride varnish, gel, or foam to your child's teeth. The entire process takes just a few minutes, and children are usually asked to avoid eating or drinking for 30 minutes afterward to allow the fluoride to fully absorb.</p>
+
+                <p>We typically recommend fluoride treatments every six months during regular dental check-ups, though some children at higher risk for cavities may benefit from more frequent applications.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule a Treatment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- EMERGENCY CARE PAGE -->
+    <section id="emergency-care" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Emergency Dental Care</h1>
+            <p class="section-subtitle">We're Here When You Need Us</p>
+
+            <div class="service-detail">
+                <h3>Dental Emergencies Happen</h3>
+                <p>When your child experiences a dental emergency, prompt attention is crucial. Whether it's a knocked-out tooth, severe toothache, or injury to the mouth, our team is ready to provide immediate care.</p>
+
+                <h3>Common Dental Emergencies:</h3>
+                <ul>
+                    <li><strong>Knocked-Out Tooth</strong> - Call us immediately and try to keep the tooth moist</li>
+                    <li><strong>Chipped or Broken Tooth</strong> - Save any pieces and rinse the mouth with warm water</li>
+                    <li><strong>Severe Toothache</strong> - Rinse with warm water and apply a cold compress</li>
+                    <li><strong>Object Stuck in Teeth</strong> - Try to gently remove with floss, never use sharp objects</li>
+                    <li><strong>Bitten Lip or Tongue</strong> - Clean the area gently and apply cold compress</li>
+                </ul>
+
+                <h3>What to Do in a Dental Emergency</h3>
+                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
+                    <li><strong>Stay Calm</strong> - Your child will take cues from you</li>
+                    <li><strong>Call Our Office</strong> - We'll provide immediate guidance: <strong>845-634-8900</strong></li>
+                    <li><strong>Manage Pain</strong> - Apply cold compress and give age-appropriate pain reliever if needed</li>
+                    <li><strong>Come In Quickly</strong> - Time is often critical in dental emergencies</li>
+                </ol>
+
+                <p>If anything arises after you leave our office, you can call us anytime. We're committed to being there for you and your family when emergencies happen.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="tel:845-634-8900" class="cta-button" style="background: #CC0000; color: white;">Call for Emergency Care</a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Your Pediatric Dental Practice. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">Creating healthy smiles for families in our community.</p>
+            <p>&copy; 2025 Rockland Pediatric Dental and Orthodontics. All rights reserved.</p>
+            <p style="margin-top: 0.5rem;">Creating healthy smiles for families in New City, Rockland County, and surrounding areas.</p>
+            <p style="margin-top: 0.5rem;">238 N. Main St., New City, NY 10956 | 845-634-8900</p>
         </div>
     </footer>
 
     <script>
+        // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.team-member');
         const dots = document.querySelectorAll('.dot');
         const totalSlides = slides.length;
 
         function showSlide(index) {
-            // Remove active class from all slides and dots
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
-
-            // Add active class to current slide and dot
             slides[index].classList.add('active');
             dots[index].classList.add('active');
         }
 
         function changeSlide(direction) {
             currentSlide += direction;
-
-            // Loop around
             if (currentSlide >= totalSlides) {
                 currentSlide = 0;
             } else if (currentSlide < 0) {
                 currentSlide = totalSlides - 1;
             }
-
             showSlide(currentSlide);
         }
 
@@ -680,14 +1161,31 @@
             showSlide(currentSlide);
         }
 
-        // Initialize - make sure first slide is visible
         showSlide(0);
 
-        // Optional: Auto-advance carousel every 5 seconds
-        // Uncomment the lines below if you want automatic sliding
-        // setInterval(() => {
-        //     changeSlide(1);
-        // }, 5000);
+        // Page navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('home-section').style.display = 'none';
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show requested section
+            if (sectionId === 'home') {
+                document.getElementById('home-section').style.display = 'block';
+                window.scrollTo(0, 0);
+            } else if (sectionId === 'about' || sectionId === 'team' || sectionId === 'testimonials' || sectionId === 'contact') {
+                document.getElementById('home-section').style.display = 'block';
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            } else {
+                document.getElementById(sectionId).classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // Initialize - show home section
+        showSection('home');
     </script>
 </body>
 </html>
