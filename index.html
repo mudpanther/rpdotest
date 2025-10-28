@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rockland Pediatric Dental and Orthodontics | New City, NY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,59 +13,119 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background: #ffffff;
+            overflow-x: hidden;
         }
 
         /* Header */
         header {
-            background: #ffffff;
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
+            padding: 0.75rem 0;
+            box-shadow: 0 2px 20px rgba(251, 191, 36, 0.15);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         .header-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
+            padding: 0 30px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2.5rem;
             align-items: center;
         }
 
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
         .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #4A90E2;
-            max-width: 300px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo-letter-r { color: #EF4444; }
+        .logo-letter-p { color: #3B82F6; }
+        .logo-letter-d { color: #F59E0B; }
+        .logo-letter-o { color: #10B981; }
+
+        .practice-name {
+            font-size: 0.85rem;
+            color: #1f2937;
+            font-weight: 600;
+            max-width: 280px;
+            line-height: 1.4;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            text-align: right;
+            font-size: 0.85rem;
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .contact-info a {
+            color: #1f2937;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-info-item:not(:last-child)::after {
+            content: '|';
+            margin-left: 1.5rem;
+            color: #9ca3af;
+        }
+
+        .contact-info a:hover {
+            color: #EF4444;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 1.5rem;
-        }
-
-        nav li {
-            position: relative;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         nav a {
             text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: #1f2937;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
             cursor: pointer;
             display: block;
-            padding: 0.5rem 0;
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
         }
 
         nav a:hover {
-            color: #4A90E2;
+            background: #ffffff;
+            color: #3B82F6;
+            transform: translateY(-2px);
         }
 
         /* Dropdown Menu */
@@ -75,86 +136,160 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #ffffff;
-            min-width: 280px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            background: #ffffff;
+            min-width: 800px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             z-index: 1;
-            border-radius: 8px;
-            padding: 0.5rem 0;
+            border-radius: 12px;
+            padding: 1.5rem;
             top: 100%;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid #e5e7eb;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .dropdown-content-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .dropdown-column {
+            display: flex;
+            flex-direction: column;
+            padding: 0 0.5rem;
+        }
+
+        .dropdown-column:not(:last-child) {
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .dropdown-column:first-child {
+            padding-left: 0;
+        }
+
+        .dropdown-column:last-child {
+            padding-right: 0;
         }
 
         .dropdown-content a {
-            color: #333;
-            padding: 12px 20px;
+            color: #374151;
+            padding: 8px 12px;
             text-decoration: none;
             display: block;
-            transition: background 0.3s;
+            transition: all 0.2s;
+            border-radius: 6px;
+            background: transparent;
+            font-size: 0.875rem;
+            white-space: nowrap;
+        }
+
+        .dropdown-content a:has(strong) {
+            padding-bottom: 0.3rem;
+            margin-bottom: 0.3rem;
+            cursor: pointer;
+        }
+
+        .dropdown-content a strong {
+            color: #1f2937;
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .dropdown-content a:not(:has(strong)) {
+            padding-left: 1rem;
         }
 
         .dropdown-content a:hover {
-            background-color: #f1f1f1;
-            color: #4A90E2;
+            background: #f3f4f6;
+            color: #3B82F6;
+            transform: translateX(3px);
         }
 
         .dropdown:hover .dropdown-content {
             display: block;
+            opacity: 1;
+            visibility: visible;
         }
 
         .dropdown > a::after {
             content: ' ▾';
-            font-size: 0.8em;
+            font-size: 0.75em;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
             color: white;
-            padding: 100px 20px;
+            padding: 80px 30px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            font-weight: 700;
+            font-weight: 800;
+            line-height: 1.1;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.35rem;
             margin-bottom: 2rem;
+            font-weight: 400;
             opacity: 0.95;
         }
 
         .cta-button {
             display: inline-block;
-            background: white;
-            color: #667eea;
-            padding: 15px 40px;
+            background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+            color: white;
+            padding: 16px 40px;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 30px rgba(239, 68, 68, 0.4);
         }
 
         /* Content Sections */
         .content-section {
             display: none;
-            padding: 80px 20px;
-            background: #f8f9fa;
+            padding: 80px 30px;
+            background: #ffffff;
         }
 
         .content-section.active {
@@ -168,37 +303,41 @@
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
+            font-size: 2.75rem;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+            font-weight: 800;
+            line-height: 1.2;
         }
 
         .section-subtitle {
             text-align: center;
             font-size: 1.2rem;
-            color: #666;
+            color: #6b7280;
             margin-bottom: 3rem;
-            font-style: italic;
+            font-weight: 500;
         }
 
         .service-detail {
-            background: white;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
+            border: 1px solid #e5e7eb;
         }
 
         .service-detail h3 {
-            color: #4A90E2;
-            font-size: 1.8rem;
+            color: #1f2937;
+            font-size: 1.75rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .service-detail p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
-            color: #555;
+            color: #4b5563;
             margin-bottom: 1rem;
         }
 
@@ -208,15 +347,16 @@
         }
 
         .service-detail li {
-            font-size: 1.05rem;
-            margin-bottom: 0.5rem;
-            color: #555;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            color: #4b5563;
+            line-height: 1.7;
         }
 
         /* About Section */
         .about {
-            padding: 80px 20px;
-            background: #f8f9fa;
+            padding: 80px 30px;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
         }
 
         .about-content {
@@ -229,62 +369,70 @@
         .about-text {
             font-size: 1.1rem;
             line-height: 1.8;
-            color: #555;
+            color: #4b5563;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border-left: 4px solid #F59E0B;
         }
 
         /* Services Overview Grid */
         .services {
-            padding: 80px 20px;
-            background: white;
+            padding: 80px 30px;
+            background: #ffffff;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
 
         .service-card {
-            background: #f8f9fa;
+            background: #ffffff;
             padding: 2.5rem;
-            border-radius: 15px;
+            border-radius: 16px;
             text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 2px solid transparent;
+            transition: all 0.3s;
+            border: 1px solid #e5e7eb;
             cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-color: #667eea;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-color: #3B82F6;
         }
 
         .service-icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
         .service-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: #1f2937;
+            font-weight: 700;
         }
 
         .service-card p {
-            color: #666;
-            line-height: 1.6;
+            color: #6b7280;
+            line-height: 1.7;
+            font-size: 1rem;
         }
 
         /* Team Section */
         .team {
-            padding: 80px 20px;
-            background: white;
+            padding: 80px 30px;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
         }
 
         .team-carousel-container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 3rem auto;
             position: relative;
             padding: 0 80px;
@@ -293,7 +441,12 @@
         .team-carousel {
             overflow: hidden;
             position: relative;
-            min-height: 500px;
+            min-height: 520px;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
         }
 
         .team-carousel-inner {
@@ -307,7 +460,7 @@
             left: 0;
             width: 100%;
             text-align: center;
-            padding: 2rem;
+            padding: 1rem;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.5s ease-in-out, visibility 0.5s;
@@ -320,34 +473,35 @@
         }
 
         .team-photo {
-            width: 250px;
-            height: 250px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
             margin: 0 auto 1.5rem;
-            border: 5px solid #667eea;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 4px solid #F59E0B;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             display: block;
         }
 
         .team-member h3 {
             font-size: 2rem;
-            color: #333;
+            color: #1f2937;
             margin-bottom: 0.5rem;
+            font-weight: 700;
         }
 
         .team-member .title {
-            color: #667eea;
+            color: #3B82F6;
             font-weight: 600;
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
         }
 
         .team-member p {
-            color: #666;
+            color: #4b5563;
             line-height: 1.8;
-            font-size: 1.1rem;
-            max-width: 600px;
+            font-size: 1.05rem;
+            max-width: 650px;
             margin: 0 auto;
         }
 
@@ -355,7 +509,7 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(102, 126, 234, 0.9);
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
             color: white;
             border: none;
             width: 50px;
@@ -368,20 +522,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
         .carousel-arrow:hover {
-            background: rgba(102, 126, 234, 1);
             transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
         }
 
-        .carousel-arrow.prev {
-            left: 0;
-        }
-
-        .carousel-arrow.next {
-            right: 0;
-        }
+        .carousel-arrow.prev { left: 0; }
+        .carousel-arrow.next { right: 0; }
 
         .carousel-dots {
             display: flex;
@@ -394,7 +544,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #ddd;
+            background: #d1d5db;
             cursor: pointer;
             transition: all 0.3s;
             border: none;
@@ -402,35 +552,41 @@
         }
 
         .dot.active {
-            background: #667eea;
+            background: #3B82F6;
             width: 40px;
             border-radius: 6px;
         }
 
         .dot:hover {
-            background: #999;
+            background: #9ca3af;
+            transform: scale(1.2);
         }
 
         /* Testimonials */
         .testimonials {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 30px;
+            background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
             color: white;
         }
 
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
 
         .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
         }
 
         .testimonial-text {
@@ -438,52 +594,71 @@
             line-height: 1.7;
             margin-bottom: 1rem;
             font-style: italic;
+            opacity: 0.95;
         }
 
         .testimonial-author {
             font-weight: 600;
             text-align: right;
+            font-size: 1rem;
         }
 
         .stars {
-            color: #ffd700;
-            margin-bottom: 0.5rem;
+            color: #FCD34D;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
         }
 
         /* Contact */
         .contact {
-            padding: 80px 20px;
-            background: #f8f9fa;
+            padding: 80px 30px;
+            background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
             text-align: center;
         }
 
         .contact-info {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 3rem auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
         }
 
         .contact-item {
             background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 2rem;
+            border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            transition: transform 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
         }
 
         .contact-item h3 {
-            color: #667eea;
+            color: #1f2937;
             margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+            font-weight: 700;
         }
 
         .hours-table {
-            margin: 2rem auto;
-            max-width: 600px;
+            margin: 2.5rem auto;
+            max-width: 700px;
             background: white;
-            border-radius: 10px;
-            padding: 2rem;
+            border-radius: 16px;
+            padding: 2.5rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        .hours-table h3 {
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 700;
         }
 
         .hours-table table {
@@ -492,31 +667,78 @@
         }
 
         .hours-table td {
-            padding: 0.8rem;
-            border-bottom: 1px solid #eee;
+            padding: 0.9rem;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 1rem;
         }
 
         .hours-table td:first-child {
             font-weight: 600;
-            color: #667eea;
+            color: #1f2937;
+        }
+
+        .hours-table td:last-child {
+            color: #6b7280;
         }
 
         /* Footer */
         footer {
-            background: #2c3e50;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
             color: white;
             text-align: center;
-            padding: 2rem 20px;
+            padding: 2.5rem 30px;
+            border-top: 3px solid #F59E0B;
         }
 
         footer p {
+            font-size: 1rem;
+            font-weight: 500;
             opacity: 0.9;
         }
 
         /* Responsive */
+        @media (max-width: 1024px) {
+            .header-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .dropdown-content {
+                min-width: 600px;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
+            .header-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            .contact-info-item {
+                justify-content: center;
+            }
+
+            .contact-info-item:not(:last-child)::after {
+                display: none;
+            }
+
             .hero h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
             nav ul {
@@ -528,6 +750,13 @@
                 position: relative;
                 box-shadow: none;
                 display: none;
+                min-width: 100%;
+                left: 0;
+                transform: none;
+            }
+
+            .dropdown-content-grid {
+                grid-template-columns: 1fr;
             }
 
             .dropdown.active .dropdown-content {
@@ -538,37 +767,56 @@
                 padding: 0 60px;
             }
 
-            .carousel-arrow {
-                width: 40px;
-                height: 40px;
+            .section-title {
+                font-size: 2.2rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .logo {
+                font-size: 2.2rem;
             }
         }
 
         .back-button {
             display: inline-block;
-            background: #667eea;
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
             color: white;
-            padding: 10px 25px;
-            border-radius: 25px;
+            padding: 12px 28px;
+            border-radius: 10px;
             text-decoration: none;
             margin-bottom: 2rem;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(59, 130, 246, 0.2);
+            font-size: 0.95rem;
         }
 
         .back-button:hover {
-            background: #5578d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Accent colors for variety */
+        .accent-blue { color: #3B82F6; }
+        .accent-orange { color: #F59E0B; }
+        .accent-red { color: #EF4444; }
+        .accent-green { color: #10B981; }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">🦷 Rockland Pediatric Dental and Orthodontics</div>
+            <div class="logo-section">
+                <div class="logo">
+                    <span class="logo-letter-r">R</span><span class="logo-letter-p">P</span><span class="logo-letter-d">D</span><span class="logo-letter-o">O</span>
+                </div>
+                <div class="practice-name">Rockland Pediatric Dental and Orthodontics</div>
+            </div>
             <nav>
                 <ul>
                     <li><a onclick="showSection('home')">Home</a></li>
@@ -576,27 +824,65 @@
                     <li class="dropdown">
                         <a>Services</a>
                         <div class="dropdown-content">
-                            <a onclick="showSection('pediatric-overview')"><strong>Pediatric Dentistry</strong></a>
-                            <a onclick="showSection('dental-sealants')" style="padding-left: 30px;">→ Dental Sealants</a>
-                            <a onclick="showSection('fluoride-treatment')" style="padding-left: 30px;">→ Fluoride Treatment</a>
-                            <a onclick="showSection('frenectomy')" style="padding-left: 30px;">→ Frenectomy/Tongue & Lip Tie</a>
-                            <a onclick="showSection('hospital-dentistry')" style="padding-left: 30px;">→ Hospital Dentistry</a>
-                            <a onclick="showSection('cleanings-exams')" style="padding-left: 30px;">→ Cleanings & Exams</a>
-                            <a onclick="showSection('sedation-dentistry')" style="padding-left: 30px;">→ Sedation Dentistry</a>
-                            <a onclick="showSection('restorative-dentistry')" style="padding-left: 30px;">→ Restorative Dentistry</a>
-                            <a onclick="showSection('special-needs')" style="padding-left: 30px;">→ Special Needs Care</a>
-                            <a onclick="showSection('sports-mouthguards')" style="padding-left: 30px;">→ Sports Mouth Guards</a>
-                            <a onclick="showSection('first-visit')" style="padding-left: 30px;">→ Your Child's First Visit</a>
-                            <a onclick="showSection('orthodontics-overview')"><strong>Orthodontics</strong></a>
-                            <a onclick="showSection('braces')" style="padding-left: 30px;">→ Braces</a>
-                            <a onclick="showSection('general-dentistry')"><strong>General Dentistry</strong></a>
+                            <div class="dropdown-content-grid">
+                                <div class="dropdown-column">
+                                    <a onclick="showSection('pediatric-overview')"><strong>Pediatric Dentistry</strong></a>
+                                    <a onclick="showSection('dental-sealants')">Dental Sealants</a>
+                                    <a onclick="showSection('fluoride-treatment')">Fluoride Treatment</a>
+                                    <a onclick="showSection('frenectomy')">Frenectomy/Tongue & Lip Tie</a>
+                                    <a onclick="showSection('hospital-dentistry')">Hospital Dentistry</a>
+                                    <a onclick="showSection('cleanings-exams')">Cleanings & Exams</a>
+                                </div>
+                                <div class="dropdown-column" style="padding-top: 2.3rem;">
+                                    <a onclick="showSection('sedation-dentistry')">Sedation Dentistry</a>
+                                    <a onclick="showSection('restorative-dentistry')">Restorative Dentistry</a>
+                                    <a onclick="showSection('special-needs')">Special Needs Care</a>
+                                    <a onclick="showSection('sports-mouthguards')">Sports Mouth Guards</a>
+                                    <a onclick="showSection('first-visit')">Your Child's First Visit</a>
+                                    <a onclick="showSection('general-dentistry')"><strong>General Dentistry</strong></a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <a onclick="showSection('orthodontics-overview')"><strong>Orthodontics</strong></a>
+                                    <a onclick="showSection('braces')">Braces</a>
+                                    <a onclick="showSection('habit-appliances')">Habit Correcting Appliances</a>
+                                    <a onclick="showSection('impacted-teeth')">Impacted Permanent Teeth</a>
+                                    <a onclick="showSection('invisalign')">Invisalign Clear Aligners</a>
+                                    <a onclick="showSection('invisalign-teen')">Invisalign Teen</a>
+                                    <a onclick="showSection('palatal-expanders')">Palatal Expanders</a>
+                                    <a onclick="showSection('two-phase')">Two Phase Treatment</a>
+                                </div>
+                            </div>
                         </div>
                     </li>
                     <li><a onclick="showSection('team')">Our Doctors</a></li>
-                    <li><a onclick="showSection('testimonials')">Reviews</a></li>
+                    <li class="dropdown">
+                        <a>Patient Resources</a>
+                        <div class="dropdown-content" style="min-width: 400px;">
+                            <div class="dropdown-content-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                <div class="dropdown-column">
+                                    <a onclick="showSection('financial-options')">Financial Options</a>
+                                    <a onclick="showSection('gallery')">Gallery</a>
+                                </div>
+                                <div class="dropdown-column">
+                                    <a onclick="showSection('patient-forms')">Patient Forms</a>
+                                    <a onclick="showSection('reviews')">Reviews</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                     <li><a onclick="showSection('contact')">Contact</a></li>
                 </ul>
             </nav>
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <span>📍</span>
+                    <span>238 N. Main St., New City, NY 10956</span>
+                </div>
+                <div class="contact-info-item">
+                    <span>📞</span>
+                    <a href="tel:845-634-8900">845-634-8900</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -604,16 +890,18 @@
     <section id="home-section">
         <div class="hero" id="home">
             <div class="hero-content">
-                <h1>Rockland Pediatric Dental and Orthodontics</h1>
-                <p>Creating healthy smiles for children and families in a comfortable, welcoming environment.</p>
-                <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule an Appointment</a>
+                <h1>Welcome to RPDO</h1>
+                <p>Where Every Visit is a Happy Adventure</p>
+                <p style="font-size: 1.1rem; margin-top: 1rem; opacity: 0.9;">Creating healthy, beautiful smiles for children and families in New City, NY</p>
+                <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
             </div>
         </div>
 
         <!-- About Section -->
         <section class="about" id="about">
             <div class="container">
-                <h2 class="section-title">Welcome to Our Practice</h2>
+                <h2 class="section-title">Welcome to Our Dental Family</h2>
+                <p class="section-subtitle">Comprehensive dental care for children and families</p>
                 <div class="about-content">
                     <div class="about-text">
                         <p>We are dedicated to providing comprehensive dental care for children and families in New City, NY. Our multi-specialty practice offers pediatric dentistry, orthodontics, and general dentistry all under one roof.</p>
@@ -629,6 +917,7 @@
         <section class="services">
             <div class="container">
                 <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive dental care for the whole family</p>
                 <div class="services-grid">
                     <div class="service-card" onclick="showSection('pediatric-overview')">
                         <div class="service-icon">👶</div>
@@ -638,15 +927,15 @@
                     <div class="service-card" onclick="showSection('orthodontics-overview')">
                         <div class="service-icon">😁</div>
                         <h3>Orthodontics</h3>
-                        <h3>Expert orthodontic care including braces and clear aligners for beautiful smiles.</p>
+                        <p>Expert orthodontic care including braces and clear aligners for beautiful smiles.</p>
                     </div>
                     <div class="service-card" onclick="showSection('general-dentistry')">
                         <div class="service-icon">🦷</div>
                         <h3>General Dentistry</h3>
-                        <p>Comprehensive dental care for adults, because parents deserve great care too!</p>
+                        <p>Comprehensive dental care for adults, because parents deserve great care too.</p>
                     </div>
                     <div class="service-card" onclick="showSection('sedation-dentistry')">
-                        <div class="service-icon">🌟</div>
+                        <div class="service-icon">✨</div>
                         <h3>Sedation Dentistry</h3>
                         <p>Safe and effective sedation options for anxious children or complex procedures.</p>
                     </div>
@@ -668,6 +957,7 @@
         <section class="team" id="team">
             <div class="container">
                 <h2 class="section-title">Meet Our Doctors</h2>
+                <p class="section-subtitle">Experienced professionals dedicated to your family's oral health</p>
                 <div class="team-carousel-container">
                     <button class="carousel-arrow prev" onclick="changeSlide(-1)">❮</button>
                     <div class="team-carousel">
@@ -720,7 +1010,8 @@
         <!-- Testimonials -->
         <section class="testimonials" id="testimonials">
             <div class="container">
-                <h2 class="section-title">What Parents Say</h2>
+                <h2 class="section-title" style="color: white;">What Our Patients Say</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Real experiences from real families</p>
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
                         <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -759,8 +1050,8 @@
         <!-- Contact -->
         <section class="contact" id="contact">
             <div class="container">
-                <h2 class="section-title">Contact Us</h2>
-                <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Ready to schedule an appointment? We'd love to hear from you!</p>
+                <h2 class="section-title">Get in Touch</h2>
+                <p style="font-size: 1.2rem; color: #4b5563; margin-bottom: 2rem; font-weight: 500;">Ready to schedule your visit? We'd love to hear from you</p>
                 <div class="contact-info">
                     <div class="contact-item">
                         <h3>📞 Phone</h3>
@@ -771,47 +1062,67 @@
                         <p>238 N. Main St.<br>New City, NY 10956</p>
                     </div>
                     <div class="contact-item">
-                        <h3>🌍 We Speak</h3>
+                        <h3>🌍 Languages</h3>
                         <p>English, Hebrew, Hungarian,<br>Malayalam, Spanish</p>
                     </div>
                 </div>
 
-                <div class="hours-table">
-                    <h3 style="color: #667eea; margin-bottom: 1.5rem; font-size: 1.5rem;">Office Hours</h3>
-                    <table>
-                        <tr>
-                            <td>Monday</td>
-                            <td>8:30 AM - 6:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Tuesday</td>
-                            <td>8:30 AM - 6:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Wednesday</td>
-                            <td>9:00 AM - 7:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Thursday</td>
-                            <td>9:00 AM - 7:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Friday</td>
-                            <td>8:30 AM - 2:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Saturday*</td>
-                            <td>8:30 AM - 2:00 PM</td>
-                        </tr>
-                        <tr>
-                            <td>Sunday</td>
-                            <td>Closed</td>
-                        </tr>
-                    </table>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">*September – June</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; align-items: start;">
+                    <div class="hours-table">
+                        <h3>Office Hours</h3>
+                        <table>
+                            <tr>
+                                <td>Monday</td>
+                                <td>8:30 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>8:30 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>9:00 AM - 7:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>9:00 AM - 7:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>8:30 AM - 2:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday*</td>
+                                <td>8:30 AM - 2:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Closed</td>
+                            </tr>
+                        </table>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #6b7280;">*September – June</p>
+                    </div>
+
+                    <div class="map-container" style="background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border: 1px solid #e5e7eb;">
+                        <h3 style="color: #1f2937; margin-bottom: 1.5rem; font-size: 1.75rem; font-weight: 700;">Find Us</h3>
+                        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <iframe 
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3003.844166268901!2d-73.99078892356911!3d41.15975161008351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2c308a8bad07d%3A0xb8d7dec96a997c5d!2s238%20N%20Main%20St%2C%20New%20City%2C%20NY%2010956!5e0!3m2!1sen!2sus!4v1761681358140!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+                                width="100%" 
+                                height="350" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=238+N+Main+St+New+City+NY+10956" target="_blank" style="display: inline-block; margin-top: 1rem; color: #3B82F6; text-decoration: none; font-weight: 600; font-size: 0.95rem;">
+                            Get Directions →
+                        </a>
+                    </div>
                 </div>
 
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white; margin-top: 2rem;">Call Now to Schedule</a>
+                <a href="tel:845-634-8900" class="cta-button" style="margin-top: 2rem;">Call to Schedule Your Visit</a>
             </div>
         </section>
     </section>
@@ -847,7 +1158,7 @@
             <div class="service-detail">
                 <h3>What Happens on A Child's First Visit?</h3>
                 <ul>
-                    <li>Tour our office and meet our friendly team!</li>
+                    <li>Tour our office and meet our friendly team</li>
                     <li>Teeth cleaning and fluoride treatment</li>
                     <li>Parents chat about diet, oral care and overall health care</li>
                     <li>X-rays may be recommended if deemed helpful and necessary</li>
@@ -872,7 +1183,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule an Appointment</a>
+                <a href="tel:845-634-8900" class="cta-button">Schedule an Appointment</a>
             </div>
         </div>
     </section>
@@ -907,7 +1218,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Schedule a Consultation</a>
+                <a href="tel:845-634-8900" class="cta-button">Schedule a Consultation</a>
             </div>
         </div>
     </section>
@@ -935,7 +1246,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Book Your Appointment</a>
+                <a href="tel:845-634-8900" class="cta-button">Book Your Appointment</a>
             </div>
         </div>
     </section>
@@ -968,9 +1279,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Discuss Sedation Options</strong></p>
-                <p style="margin-bottom: 2rem;">Contact us to learn which sedation option is best for your child!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Discuss Sedation Options</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Contact us to learn which sedation option is best for your child</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1024,9 +1335,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Schedule An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">We are committed to helping your child achieve and maintain a healthy smile!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">We are committed to helping your child achieve and maintain a healthy smile</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1057,9 +1368,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Give Us A Call</strong></p>
-                <p style="margin-bottom: 2rem;">Find out how we can help care for your child's smile!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Give Us A Call</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Find out how we can help care for your child's smile</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1094,9 +1405,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Make An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">Give us a call to find out if dental sealants might be a good solution for your child's growing smile!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Give us a call to find out if dental sealants might be a good solution for your child's growing smile</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1126,9 +1437,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Make An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">Contact us today to learn more about fluoride treatment!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Contact us today to learn more about fluoride treatment</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1151,10 +1462,10 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Schedule An Appointment</strong></p>
-                <p style="margin-bottom: 1rem;">Call us today to schedule your child's appointment with Dr. Dorit Hermann!</p>
-                <p style="font-size: 0.9rem; font-style: italic; color: #666; margin-bottom: 2rem;">Credit goes to Lawrence A. Kotlow, DDS, Pediatric Dentist Albany, NY.</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule An Appointment</p>
+                <p style="margin-bottom: 1rem; color: #6b7280;">Call us today to schedule your child's appointment with Dr. Dorit Hermann</p>
+                <p style="font-size: 0.9rem; font-style: italic; color: #9ca3af; margin-bottom: 2rem;">Credit goes to Lawrence A. Kotlow, DDS, Pediatric Dentist Albany, NY.</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1184,9 +1495,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Schedule A Consultation</strong></p>
-                <p style="margin-bottom: 2rem;">We welcome you to call us if you have any questions about hospital dentistry or want to schedule a consultation!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule A Consultation</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">We welcome you to call us if you have any questions about hospital dentistry or want to schedule a consultation</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1225,9 +1536,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Make An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">Call to schedule an initial appointment today!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Call to schedule an initial appointment today</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1258,9 +1569,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Schedule An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">To make an appointment and learn more about sports mouth guards!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">To make an appointment and learn more about sports mouth guards</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1295,9 +1606,9 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Schedule Your Child's First Appointment!</strong></p>
-                <p style="margin-bottom: 2rem;">Give us a call to schedule your child's first dental appointment!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule Your Child's First Appointment!</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Give us a call to schedule your child's first dental appointment</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1334,7 +1645,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="tel:845-634-8900" class="cta-button" style="background: #CC0000; color: white;">Call for Emergency Care</a>
+                <a href="tel:845-634-8900" class="cta-button" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);">Call for Emergency Care</a>
             </div>
         </div>
     </section>
@@ -1377,9 +1688,343 @@
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <p style="font-size: 1.2rem; margin-bottom: 1rem;"><strong>Make An Appointment</strong></p>
-                <p style="margin-bottom: 2rem;">Call to schedule an initial consultation with Dr. Emily Schadt about a treatment plan that is right for you or your child!</p>
-                <a href="tel:845-634-8900" class="cta-button" style="background: #667eea; color: white;">Call 845-634-8900</a>
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Call to schedule an initial consultation with Dr. Emily Schadt about a treatment plan that is right for you or your child</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HABIT CORRECTING APPLIANCES PAGE -->
+    <section id="habit-appliances" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Habit Correcting Appliances</h1>
+            <p class="section-subtitle">Breaking Bad Oral Habits for Better Development</p>
+
+            <div class="service-detail">
+                <p>If your child sucks fingers or thumbs or has other negative oral habits, we can help. These types of habits can often cause damage to their oral growth and development, and by correcting these habits early we can also help your child avoid the need for more extensive orthodontic treatment in the future.</p>
+
+                <h3>Thumb & Finger Sucking Habits</h3>
+                <p>Thumb and finger sucking is normal in children under the age of 4, and most children will stop on their own between ages 2 and 4. However, if they continue to suck their thumbs or fingers beyond this point it can cause significant damage to the alignment of their teeth and jaw, including problems such as open bites, crossbites and horizontal overlaps of the front teeth, and problems with speech.</p>
+
+                <p>Similarly, constant pressure of the tongue against the teeth (also known as a tongue-thrust) when swallowing, speaking and at rest can force teeth and arches out of alignment.</p>
+
+                <h3>Habit Correction Appliances</h3>
+                <p>There are a number of oral appliances our orthodontist may recommend to help break finger sucking and tongue thrusting habits. Thumb sucking appliances are often effective in discouraging sucking, while tongue thrust appliances usually involve a type of "physical therapy" to help retrain the muscles of the tongue. Our pediatric dentists and orthodontist will work closely with you to determine the right option for your children so they can develop better habits and enjoy the benefits of a healthy smile.</p>
+
+                <p>We may also recommend simple things you can try at home to break bad oral habits, such as putting a glove or a sock over your child's hand or creating diversions at times when they usually suck their fingers. They may also suck their fingers due to anxiety and might stop if the source of their anxiety is found and appropriately managed or soothed.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">To make an appointment with Dr. Emily Schadt and learn more about habit correcting appliances</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACTED PERMANENT TEETH PAGE -->
+    <section id="impacted-teeth" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Impacted Permanent Teeth</h1>
+            <p class="section-subtitle">Helping Teeth Erupt Properly</p>
+
+            <div class="service-detail">
+                <p>Dr. Emily Schadt provides treatments to help impacted teeth erupt properly so that children can continue to grow and develop properly as well as maintain correct dental alignment.</p>
+
+                <h3>What Is An Impacted Tooth?</h3>
+                <p>An impacted tooth is a tooth which fails to erupt properly, remaining trapped in the gums and bone tissues. The most common teeth to become impacted are the wisdom teeth (third molars) however, the second most common impacted teeth are the canine teeth.</p>
+
+                <h3>Impacted Tooth Exposure</h3>
+                <p>If your teeth do not erupt normally, our orthodontist will check the position of the adjacent teeth and take X-rays to determine if the teeth are impacted and assess the effects on the neighboring teeth. We can then create a treatment plan to expose the impacted teeth. Impacted tooth exposure typically involves removing the gums that cover the tooth. In some cases, this is enough to allow the tooth to erupt normally. In other cases, an orthodontic attachment may need to be bonded to the impacted tooth. This attachment is connected to a small chain and will gradually and gently guide your impacted tooth into its proper position.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">To learn more about impacted tooth exposure and make an appointment with Dr. Emily Schadt</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVISALIGN CLEAR ALIGNERS PAGE -->
+    <section id="invisalign" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Invisalign® Clear Aligners</h1>
+            <p class="section-subtitle">A Discreet Alternative to Traditional Braces</p>
+
+            <div class="service-detail">
+                <p>If you are looking for an alternative to traditional braces, our orthodontist may recommend Invisalign® clear aligners. This treatment works to straighten your teeth using a series of clear plastic aligners, offering you a treatment that is effective as well as discreet and comfortable.</p>
+
+                <h3>What Is Invisalign Treatment?</h3>
+                <p>Invisalign treatment is a type of orthodontic care that uses specially designed aligners to correct the position of your teeth. Invisalign clear aligners can correct all the same issues as braces, including crowded and crooked teeth, gaps and excessively spaced teeth and bad bites. This treatment is often a great option for adults and teenagers who are interested in a virtually invisible orthodontic treatment option.</p>
+
+                <p>In addition to being more discreet the aligners are also removable, which allows you to brush and floss normally and to eat whatever you would like. We do recommend that you wear your aligners whenever you are not eating, brushing or flossing in order to keep your treatment on track. We also encourage you to clean your aligners regularly, as they can cause your teeth to appear discolored if they are dirty.</p>
+
+                <h3>The Invisalign Treatment Process</h3>
+                <p>Your Invisalign treatment begins with a consultation to determine if Invisalign clear aligners are the right option for you. If they are, then our orthodontist will begin by taking digital scans of your teeth from which your aligners will be made. You will wear your aligners for several weeks before switching to a new set of aligners. As you continue to change to new sets of aligners, small adjustments will be made to your teeth until they have been moved into their ideal positions.</p>
+                
+                <p style="font-size: 0.9rem; font-style: italic; color: #9ca3af; margin-top: 2rem;">Invisalign and the Invisalign logo, among others, are trademarks of Align Technology, Inc., and are registered in the U.S. and other countries.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule A Consultation</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">We invite you to call us today to schedule a complimentary consultation with Dr. Emily Schadt</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVISALIGN TEEN PAGE -->
+    <section id="invisalign-teen" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Invisalign® Teen</h1>
+            <p class="section-subtitle">Clear Aligners Designed for Teens</p>
+
+            <div class="service-detail">
+                <p>At Rockland Pediatric Dental and Orthodontics, we believe everyone has the right to be themselves and to take on the world with courage and confidence! When it comes to our teen and tween patients, we know that creating a great smile can go a long way.</p>
+
+                <p>Invisalign® clear aligners are a great orthodontic option for some teens, especially if they feel self-conscious about traditional braces or want the convenience of being able to eat, drink and brush like normal. Invisalign treatment offers teens consistent results — as long as they put in consistent effort by wearing their clear aligners 20 to 22 hours per day.</p>
+
+                <h3>How Does Invisalign Treatment For Teens Work?</h3>
+                <p>Invisalign treatment begins with an initial appointment where our orthodontic team will take a digital scan of your teen's mouth using an iTero Element scanner. The scanner takes 6,000 images per second to create a complete 3D picture of their teeth. Using special computer software, our team will map out the path to your best smile.</p>
+
+                <p>Once your teen's custom-designed aligners arrive, they will wear them daily — for 20 to 22 hours a day — as they gently shift your teen's teeth in the right direction. Every one or two weeks, your teen will change to a new set of aligners, as directed by our orthodontist. The total length of treatment varies from person to person, but your teen will probably start to see subtle changes within the first several weeks.</p>
+
+                <p>To help teens stay on track with their Invisalign treatment, aligners can include a small blue dot that will change colors to indicate if they are being worn as needed. Our orthodontist may also recommend applying SmartForce attachments — small, tooth-colored bumps that act like against which the Invisalign aligners push. For teens and tweens with overbites, precision wings can help to gradually move the lower jaw into place.</p>
+
+                <h3>Invisalign Aligners vs. Braces? Which One Is Right For My Teen?</h3>
+                <p>Pursuing orthodontic treatment is a big decision, one that can have an impact on your teen's smile for many years to come. Here are a few ways that Invisalign treatment is different from traditional braces:</p>
+                <ul>
+                    <li><strong>Invisalign clear aligners are removable.</strong> While traditional braces are affixed to the surface of the teeth, Invisalign aligners are worn like retainers and can be easily popped out to eat, drink or brush.</li>
+                    <li><strong>There are no forbidden foods — bring on the popcorn!</strong> Since you can remove your aligners to eat, no food is "off limits" during treatment — feel free to chew popcorn, apples, carrots or gum. Just make sure to brush and floss your teeth and replace the aligners after you eat.</li>
+                    <li><strong>Aligners are less irritating.</strong> With Invisalign aligners, there are no brackets to rub against the inside of the mouth — and fewer emergency trips to our orthodontist for broken brackets or poking wires.</li>
+                    <li><strong>There are no brackets to brush around.</strong> No tricky nooks and crannies to brush or wires to floss around here! Remove your aligners to brush and floss your teeth — and be sure to give your aligners a gentle brush each day while you are at it.</li>
+                </ul>
+
+                <p style="font-size: 0.9rem; font-style: italic; color: #9ca3af; margin-top: 2rem;">Invisalign and the Invisalign logo, among others, are trademarks of Align Technology, Inc., and are registered in the U.S. and other countries.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make An Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Call today to make an appointment with Dr. Emily Schadt to discuss Invisalign treatment for teens</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PALATAL EXPANDERS PAGE -->
+    <section id="palatal-expanders" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Palatal Expanders</h1>
+            <p class="section-subtitle">Widening the Upper Jaw for Better Alignment</p>
+
+            <div class="service-detail">
+                <p>When you visit our orthodontist for your initial consultation, we will examine your teeth and bite to evaluate the fit of your upper and lower teeth. Many patients need adjustments to their bite in order to help their top and bottom teeth fit together properly and ensure a smile that is both functional and aesthetically pleasing. In cases where the upper arch is too narrow and cannot accommodate all your teeth, a palatal expander may be a good option for making this adjustment and improving your bite.</p>
+
+                <h3>What Are Palatal Expanders?</h3>
+                <p>Palatal expanders are a type of orthodontic appliance used to widen the upper jaw. Palatal expanders are very gentle, working gradually to address functional issues and create a broader, more aesthetic smile.</p>
+
+                <h3>How Do Palatal Expanders Work?</h3>
+                <p>Palatal expanders work by gradually stretching the soft cartilage of middle of the the palate, making room for crowded permanent teeth without the need of extracting those teeth. Our orthodontist will discuss whether or not a palatal expander is right for you, and whether a fixed or removable appliance would be most beneficial for your needs.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Make Your Appointment</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Contact us today to make an appointment with Dr. Emily Schadt</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TWO PHASE TREATMENT PAGE -->
+    <section id="two-phase" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Two Phase Treatment</h1>
+            <p class="section-subtitle">Comprehensive Orthodontic Care at the Right Time</p>
+
+            <div class="service-detail">
+                <p>At Rockland Pediatric Dental and Orthodontics, we want you to love your smile!</p>
+
+                <p>We love creating great smiles for patients of all ages, and we offer a variety of orthodontic treatment options — from traditional braces to clear retainers — to fit your oral health needs.</p>
+
+                <h3>Does My Child Need Braces? How Can Orthodontic Treatment Help My Child's Smile?</h3>
+                <p>While a bright smile can help us all feel confident, orthodontia is about more than just appearances.</p>
+
+                <p>Malocclusions, or "bad bites" characterized by upper and lower teeth that do not align, can affect the way you chew, speak and smile — and it can even lead to more serious (and expensive) oral health problems later in life.</p>
+
+                <p>Some of the common conditions that can be corrected with orthodontic treatment are:</p>
+                <ul>
+                    <li><strong>Crowded Teeth:</strong> Teeth that are crooked, rotated or overlapping.</li>
+                    <li><strong>Excessive Overjet:</strong> The upper jaw or upper front teeth are much further forward than the lower front teeth or jaw.</li>
+                    <li><strong>Underbite:</strong> The lower jaw or teeth are too far forward, or the upper jaw or teeth are too far back.</li>
+                    <li><strong>Excessive Overbite:</strong> The upper teeth excessively overlap the bottom ones.</li>
+                    <li><strong>Protrusion:</strong> The upper teeth stick out and do not fit with the lower front teeth.</li>
+                    <li><strong>Excessive Spacing:</strong> Teeth that have wide gaps between them.</li>
+                </ul>
+
+                <h3>What is Two-Phase Orthodontic Treatment? When Should My Child See an Orthodontist?</h3>
+                <p>We follow the recommendation of the American Academy of Orthodontics, which recommends that you schedule a complimentary consultation for your child with our orthodontist in our New City office as early as age 7. This may seem young — especially if you had braces as an older child yourself — but it is the perfect time to understand if their smile can be treated with one- or two-phase orthodontic treatment approaches.</p>
+
+                <p>Two-phase orthodontic treatment simply means that treatment is done at two separate times — typically before and after all of the patient's permanent teeth emerge. Not everyone who has Phase I treatment will need Phase II treatment, but since the two phases treat different sets of problems, many children benefit from both.</p>
+
+                <p>Here is what to expect from each phase of treatment:</p>
+
+                <h3>Phase I Orthodontic Treatment</h3>
+                <p>The first phase of orthodontic treatment is done before all of the permanent teeth erupt because this is the best time to prevent or fix problems of jaw growth and development. Treatment at this time can address the amount of space permanent teeth have to grow into, as well as any conditions that could cause tooth damage if left untreated.</p>
+
+                <p>During this time in a child's development, the upper jawbone is still growing and can be gently guided into proper position. Treatment in Phase I is typically done with an appliance in the mouth or with limited (not full-mouth) braces. After Phase I, our orthodontist may recommend a temporary retainer to maintain the positive changes as the rest of the permanent teeth erupt.</p>
+
+                <p>Our orthodontic team will determine whether Phase II treatment is necessary at a later time. Children who have Phase I treatment often have a shorter Phase II treatment and can sometimes avoid additional procedures such as extractions.</p>
+
+                <h3>Phase II Orthodontic Treatment</h3>
+                <p>Once all of the permanent teeth are in place, Phase II treatment can begin to move the teeth into a position that is in harmony with the jaws, lips and other teeth. This is often done with a full set of braces or, for certain cases, with a series of clear aligner trays.</p>
+
+                <p>During this phase, the lower jawbone is growing, which makes Phase II the perfect time to address lower jaw issues such as overbites.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Schedule A Consultation</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">No matter what age your child, it is never too late to map out the orthodontic treatment plan that will create their best smile</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINANCIAL OPTIONS PAGE -->
+    <section id="financial-options" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Financial Options</h1>
+            <p class="section-subtitle">Making Quality Dental Care Accessible</p>
+
+            <div class="service-detail">
+                <p>Here at Rockland Pediatric Dental and Orthodontics, we understand that each financial situation is unique. Our practice offers several financial options to work with your budget and help you provide your child with quality pediatric and orthodontic dental care in New City, New York.</p>
+
+                <h3>We Accept:</h3>
+                <ul>
+                    <li><strong>Many PPO dental insurances</strong> - We work with most PPO insurance plans</li>
+                    <li><strong>In-office financing options</strong> - Available for patients without insurance</li>
+                    <li><strong>Cash, checks and credit cards</strong> - For out-of-pocket payments</li>
+                </ul>
+
+                <p>For more information about our financial options and insurance policies, please call us today. Our friendly team is happy to answer any questions you may have and help you understand your payment options.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Questions About Payment?</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Call us today to discuss your financial options</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY PAGE -->
+    <section id="gallery" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Gallery</h1>
+            <p class="section-subtitle">Beautiful Smiles We've Created</p>
+
+            <div class="service-detail">
+                <p>Explore our smile gallery to see the beautiful results our skilled pediatric dentists, orthodontist and dentist have helped our patients achieve. From pediatric dentistry to orthodontics and general dental care, we're proud of the smiles we've helped create!</p>
+
+                <p style="text-align: center; margin: 3rem 0; font-size: 1.25rem; color: #3B82F6;">
+                    <strong>Coming Soon!</strong><br>
+                    <span style="font-size: 1rem; color: #6b7280;">We're working on bringing you an amazing gallery of smile transformations.</span>
+                </p>
+
+                <p>Every smile tells a story, and we're honored to be part of yours. Whether it's your child's first dental visit, completing orthodontic treatment, or achieving optimal oral health, we celebrate every milestone with you.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Ready to Start Your Smile Journey?</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">To learn more about our dental services and schedule an appointment</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PATIENT FORMS PAGE -->
+    <section id="patient-forms" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Patient Forms</h1>
+            <p class="section-subtitle">Complete Your Forms Before Your Visit</p>
+
+            <div class="service-detail">
+                <p>We have provided your patient forms online for your convenience and invite you to complete them prior to arriving for your appointment at Rockland Pediatric Dental and Orthodontics. This will save you time, streamline your experience and help our doctors and team prepare to meet with you.</p>
+
+                <h3>New Patient Forms</h3>
+                <p>If you're a new patient, please download and complete the appropriate form before your first visit:</p>
+                
+                <div style="background: #f9fafb; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid #3B82F6;">
+                    <h4 style="color: #3B82F6; margin-bottom: 1rem; font-weight: 700;">📄 Adult New Patient Form</h4>
+                    <p style="margin-bottom: 1rem;">For adult patients seeking general dentistry services</p>
+                    <p style="font-size: 0.9rem; color: #6b7280;">Please bring your completed form to your first appointment, or email it to our office in advance.</p>
+                </div>
+
+                <div style="background: #f9fafb; padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid #F59E0B;">
+                    <h4 style="color: #F59E0B; margin-bottom: 1rem; font-weight: 700;">📄 Pediatric New Patient Form</h4>
+                    <p style="margin-bottom: 1rem;">For children seeking pediatric dentistry or orthodontic services</p>
+                    <p style="font-size: 0.9rem; color: #6b7280;">Please bring your completed form to your child's first appointment.</p>
+                </div>
+
+                <p style="margin-top: 2rem;">If you have any questions about your paperwork or about our dental services, please don't hesitate to contact us!</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Need Help With Forms?</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Give us a call and we'll be happy to assist you</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS PAGE -->
+    <section id="reviews" class="content-section">
+        <div class="container">
+            <a onclick="showSection('home')" class="back-button">← Back to Home</a>
+            <h1 class="section-title">Patient Reviews</h1>
+            <p class="section-subtitle">See What Our Patients Are Saying</p>
+
+            <div class="service-detail">
+                <p>Read our reviews to learn how our doctors and team have helped our patients and their families improve their oral health and smiles! We invite you to leave a review of your own after visiting Rockland Pediatric Dental and Orthodontics for treatment.</p>
+
+                <div style="text-align: center; margin: 3rem 0;">
+                    <h3 style="color: #3B82F6; margin-bottom: 2rem; font-weight: 700;">Leave Us A Review</h3>
+                    <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+                        <a href="https://www.google.com/search?q=Rockland+Pediatric+Dental+and+Orthodontics" target="_blank" style="display: inline-block; background: #4285F4; color: white; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(66, 133, 244, 0.2);">
+                            Google
+                        </a>
+                        <a href="https://www.yelp.com" target="_blank" style="display: inline-block; background: #D32323; color: white; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(211, 35, 35, 0.2);">
+                            Yelp
+                        </a>
+                        <a href="https://www.facebook.com" target="_blank" style="display: inline-block; background: #1877F2; color: white; padding: 14px 28px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: transform 0.3s; box-shadow: 0 2px 10px rgba(24, 119, 242, 0.2);">
+                            Facebook
+                        </a>
+                    </div>
+                </div>
+
+                <div style="background: #f9fafb; padding: 2rem; border-radius: 12px; margin-top: 3rem;">
+                    <h3 style="color: #1f2937; margin-bottom: 1.5rem; text-align: center; font-weight: 700;">What Our Patients Say</h3>
+                    <p style="text-align: center; color: #6b7280;">See the testimonials section on our homepage for reviews from families who have experienced our exceptional care!</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a onclick="showSection('home'); setTimeout(() => document.getElementById('testimonials').scrollIntoView({behavior: 'smooth'}), 100);" style="color: #3B82F6; cursor: pointer; text-decoration: none; font-weight: 600; border-bottom: 2px solid #3B82F6;">Read Patient Testimonials →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="font-size: 1.15rem; margin-bottom: 1rem; font-weight: 600;">Ready to Experience Great Dental Care?</p>
+                <p style="margin-bottom: 2rem; color: #6b7280;">Schedule your appointment today</p>
+                <a href="tel:845-634-8900" class="cta-button">Call 845-634-8900</a>
             </div>
         </div>
     </section>
@@ -1387,9 +2032,9 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Rockland Pediatric Dental and Orthodontics. All rights reserved.</p>
-            <p style="margin-top: 0.5rem;">Creating healthy smiles for families in New City, Rockland County, and surrounding areas.</p>
-            <p style="margin-top: 0.5rem;">238 N. Main St., New City, NY 10956 | 845-634-8900</p>
+            <p>© 2025 Rockland Pediatric Dental and Orthodontics (RPDO)</p>
+            <p style="margin-top: 0.5rem;">Creating healthy, happy smiles for families in New City & surrounding areas</p>
+            <p style="margin-top: 0.5rem;">238 N. Main St., New City, NY 10956 | 📞 845-634-8900</p>
         </div>
     </footer>
 
