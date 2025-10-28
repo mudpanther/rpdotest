@@ -226,28 +226,36 @@
             max-width: 800px;
             margin: 3rem auto;
             position: relative;
+            padding: 0 80px;
         }
 
         .team-carousel {
             overflow: hidden;
             position: relative;
+            min-height: 500px;
         }
 
         .team-carousel-inner {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+            position: relative;
+            height: 100%;
         }
 
         .team-member {
-            min-width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             text-align: center;
             padding: 2rem;
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s;
         }
 
         .team-member.active {
             opacity: 1;
+            visibility: visible;
+            z-index: 1;
         }
 
         .team-photo {
@@ -258,6 +266,7 @@
             margin: 0 auto 1.5rem;
             border: 5px solid #667eea;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: block;
         }
 
         .team-member h3 {
@@ -307,11 +316,11 @@
         }
 
         .carousel-arrow.prev {
-            left: -60px;
+            left: 0;
         }
 
         .carousel-arrow.next {
-            right: -60px;
+            right: 0;
         }
 
         /* Dots Navigation */
@@ -345,18 +354,14 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            .team-carousel-container {
+                padding: 0 60px;
+            }
+
             .carousel-arrow {
                 width: 40px;
                 height: 40px;
                 font-size: 1.2rem;
-            }
-
-            .carousel-arrow.prev {
-                left: 10px;
-            }
-
-            .carousel-arrow.next {
-                right: 10px;
             }
 
             .team-photo {
@@ -366,6 +371,10 @@
 
             .team-member h3 {
                 font-size: 1.6rem;
+            }
+
+            .team-carousel {
+                min-height: 550px;
             }
         }
 
@@ -651,10 +660,6 @@
             // Add active class to current slide and dot
             slides[index].classList.add('active');
             dots[index].classList.add('active');
-
-            // Move carousel
-            const carouselInner = document.querySelector('.team-carousel-inner');
-            carouselInner.style.transform = `translateX(-${index * 100}%)`;
         }
 
         function changeSlide(direction) {
@@ -674,6 +679,9 @@
             currentSlide = index;
             showSlide(currentSlide);
         }
+
+        // Initialize - make sure first slide is visible
+        showSlide(0);
 
         // Optional: Auto-advance carousel every 5 seconds
         // Uncomment the lines below if you want automatic sliding
