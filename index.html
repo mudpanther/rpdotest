@@ -144,11 +144,11 @@
             padding: 1.5rem;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(-10px);
             border: 1px solid #e5e7eb;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
+            transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
         }
 
         .dropdown-content-grid {
@@ -213,6 +213,7 @@
             display: block;
             opacity: 1;
             visibility: visible;
+            transform: translateX(-50%) translateY(0);
         }
 
         .dropdown > a::after {
@@ -395,7 +396,7 @@
             padding: 2.5rem;
             border-radius: 16px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid #e5e7eb;
             cursor: pointer;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
@@ -582,11 +583,13 @@
             padding: 2rem;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: transform 0.3s;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .testimonial-card:hover {
             transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .testimonial-text {
@@ -630,11 +633,12 @@
             border-radius: 16px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             border: 1px solid #e5e7eb;
-            transition: transform 0.3s;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .contact-item:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
 
         .contact-item h3 {
@@ -798,6 +802,58 @@
         /* Smooth scroll behavior */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Page Transition Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-transition-out {
+            animation: fadeOut 0.3s ease-out forwards;
+        }
+
+        .page-transition-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        /* Smooth initial load */
+        body {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Ensure sections start visible but will animate in */
+        #home-section, .content-section {
+            opacity: 1;
         }
 
         /* Accent colors for variety */
@@ -2061,24 +2117,68 @@
 
         showSlide(0);
 
-        // Page navigation
+        // Page navigation with smooth transitions
         function showSection(sectionId) {
-            // Hide all sections
-            document.getElementById('home-section').style.display = 'none';
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show requested section
-            if (sectionId === 'home') {
-                document.getElementById('home-section').style.display = 'block';
-                window.scrollTo(0, 0);
-            } else if (sectionId === 'about' || sectionId === 'team' || sectionId === 'testimonials' || sectionId === 'contact') {
-                document.getElementById('home-section').style.display = 'block';
-                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            // Get current visible section
+            const homeSection = document.getElementById('home-section');
+            const allContentSections = document.querySelectorAll('.content-section');
+            let currentSection = null;
+            
+            if (homeSection.style.display !== 'none') {
+                currentSection = homeSection;
             } else {
-                document.getElementById(sectionId).classList.add('active');
-                window.scrollTo(0, 0);
+                allContentSections.forEach(section => {
+                    if (section.classList.contains('active')) {
+                        currentSection = section;
+                    }
+                });
+            }
+
+            // Add fade out animation to current section
+            if (currentSection) {
+                currentSection.classList.add('page-transition-out');
+                
+                // Wait for fade out animation to complete
+                setTimeout(() => {
+                    // Hide all sections
+                    homeSection.style.display = 'none';
+                    allContentSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Remove transition class
+                    currentSection.classList.remove('page-transition-out');
+                    
+                    // Show and animate in the requested section
+                    if (sectionId === 'home') {
+                        homeSection.style.display = 'block';
+                        homeSection.classList.add('page-transition-in');
+                        window.scrollTo(0, 0);
+                        setTimeout(() => homeSection.classList.remove('page-transition-in'), 400);
+                    } else if (sectionId === 'about' || sectionId === 'team' || sectionId === 'testimonials' || sectionId === 'contact') {
+                        homeSection.style.display = 'block';
+                        homeSection.classList.add('page-transition-in');
+                        setTimeout(() => {
+                            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+                            homeSection.classList.remove('page-transition-in');
+                        }, 100);
+                    } else {
+                        const targetSection = document.getElementById(sectionId);
+                        targetSection.classList.add('active');
+                        targetSection.classList.add('page-transition-in');
+                        window.scrollTo(0, 0);
+                        setTimeout(() => targetSection.classList.remove('page-transition-in'), 400);
+                    }
+                }, 300); // Match fadeOut animation duration
+            } else {
+                // First load - no animation needed
+                if (sectionId === 'home') {
+                    homeSection.style.display = 'block';
+                    window.scrollTo(0, 0);
+                } else {
+                    document.getElementById(sectionId).classList.add('active');
+                    window.scrollTo(0, 0);
+                }
             }
         }
 
