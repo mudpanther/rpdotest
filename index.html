@@ -223,51 +223,90 @@
             font-size: 0.75em;
         }
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
-            color: white;
-            padding: 80px 30px;
-            text-align: center;
+        /* Hero Slideshow Section */
+        .hero-slideshow {
             position: relative;
+            width: 100%;
+            height: 650px;
             overflow: hidden;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
         }
 
-        .hero::before {
-            content: '';
+        .hero-slide {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 15s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.3; }
-        }
-
-        .hero-content {
-            max-width: 900px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out, visibility 1s;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            padding: 0 80px;
+            max-width: 1400px;
             margin: 0 auto;
-            position: relative;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            visibility: visible;
             z-index: 1;
         }
 
-        .hero h1 {
+        .hero-slide-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-slide-image img {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid #F59E0B;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-slide-content {
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero-slide-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             font-weight: 800;
             line-height: 1.1;
+            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero p {
-            font-size: 1.35rem;
+        .hero-slide-content .doctor-title {
+            font-size: 1.8rem;
+            color: #60A5FA;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-slide-content p {
+            font-size: 1.15rem;
+            line-height: 1.8;
             margin-bottom: 2rem;
-            font-weight: 400;
             opacity: 0.95;
+            color: #e5e7eb;
         }
 
         .cta-button {
@@ -287,6 +326,66 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(239, 68, 68, 0.4);
         }
+
+        .hero-slideshow-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .hero-slideshow-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .hero-slideshow-dot.active {
+            background: #F59E0B;
+            width: 50px;
+            border-radius: 7px;
+            border-color: #FCD34D;
+        }
+
+        .hero-slideshow-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: scale(1.2);
+        }
+
+        .hero-slideshow-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(245, 158, 11, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-slideshow-arrow:hover {
+            background: rgba(239, 68, 68, 0.9);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .hero-slideshow-arrow.prev { left: 20px; }
+        .hero-slideshow-arrow.next { right: 20px; }
 
         /* Content Sections */
         .content-section {
@@ -721,6 +820,17 @@
             .contact-info {
                 justify-content: center;
             }
+
+            .hero-slide {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px;
+            }
+
+            .hero-slide-image img {
+                width: 350px;
+                height: 350px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -744,8 +854,29 @@
                 display: none;
             }
 
-            .hero h1 {
+            .hero-slideshow {
+                height: 550px;
+            }
+
+            .hero-slide {
+                padding: 20px;
+            }
+
+            .hero-slide-image img {
+                width: 280px;
+                height: 280px;
+            }
+
+            .hero-slide-content h1 {
                 font-size: 2.5rem;
+            }
+
+            .hero-slide-content .doctor-title {
+                font-size: 1.4rem;
+            }
+
+            .hero-slide-content p {
+                font-size: 1rem;
             }
 
             nav ul {
@@ -947,12 +1078,78 @@
 
     <!-- Home Section -->
     <section id="home-section">
-        <div class="hero" id="home">
-            <div class="hero-content">
-                <h1>Welcome to RPDO</h1>
-                <p>Where Every Visit is a Happy Adventure</p>
-                <p style="font-size: 1.1rem; margin-top: 1rem; opacity: 0.9;">Creating healthy, beautiful smiles for children and families in New City, NY</p>
-                <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+        <!-- Hero Slideshow -->
+        <div class="hero-slideshow">
+            <button class="hero-slideshow-arrow prev" onclick="changeHeroSlide(-1)">❮</button>
+            
+            <div class="hero-slide active">
+                <div class="hero-slide-image">
+                    <img src="dr-schadt.jpg" alt="Dr. Emily Schadt">
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Dr. Emily Schadt</h1>
+                    <p class="doctor-title">Orthodontist</p>
+                    <p>Dr. Schadt loves the field of orthodontics and the opportunity it gives her to build relationships with her patients and the community. She earned her Bachelor of Science in Human Physiology from Boston University and her Doctor of Dental Medicine from Tufts University, graduating Summa Cum Laude.</p>
+                    <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+                </div>
+            </div>
+
+            <div class="hero-slide">
+                <div class="hero-slide-image">
+                    <img src="dr-hermann.jpg" alt="Dr. Dorit Hermann">
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Dr. Dorit Hermann</h1>
+                    <p class="doctor-title">Pediatric Dentist</p>
+                    <p>Dr. Hermann is passionate about creating positive dental experiences for children and helping them develop healthy habits for life through gentle, compassionate care. She completed her residency at Columbia Presbyterian Medical Center and a fellowship in special needs dentistry.</p>
+                    <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+                </div>
+            </div>
+
+            <div class="hero-slide">
+                <div class="hero-slide-image">
+                    <img src="dr-chaly.jpg" alt="Dr. Anne Chaly">
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Dr. Anne Chaly</h1>
+                    <p class="doctor-title">Pediatric Dentist</p>
+                    <p>Dr. Chaly brings warmth and expertise to every patient interaction. She believes in building trust with children through patience and understanding. She is board certified and completed a special needs fellowship at Helen Hayes Hospital.</p>
+                    <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+                </div>
+            </div>
+
+            <div class="hero-slide">
+                <div class="hero-slide-image">
+                    <img src="dr-marcovich.jpg" alt="Dr. Clarissa Marcovich">
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Dr. Clarissa Marcovich</h1>
+                    <p class="doctor-title">Pediatric Dentist</p>
+                    <p>Dr. Marcovich is dedicated to providing exceptional pediatric dental care in a comfortable, child-friendly environment where every visit is a positive experience. She served as the Director of the Undergraduate Pediatric Dentistry Department for seven years.</p>
+                    <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+                </div>
+            </div>
+
+            <div class="hero-slide">
+                <div class="hero-slide-image">
+                    <img src="dr-paul.jpg" alt="Dr. Jaby Paul">
+                </div>
+                <div class="hero-slide-content">
+                    <h1>Dr. Jaby Paul</h1>
+                    <p class="doctor-title">General Dentist</p>
+                    <p>Dr. Paul provides comprehensive dental care for adults with a focus on personalized treatment plans and patient comfort. His experience includes cosmetics, endodontics, oral surgery, and prosthodontics. He completed his residency at the Brooklyn Hospital Center in NYC.</p>
+                    <a href="#contact" class="cta-button" onclick="showSection('contact')">Schedule Your Visit</a>
+                </div>
+            </div>
+
+            <button class="hero-slideshow-arrow next" onclick="changeHeroSlide(1)">❯</button>
+
+            <div class="hero-slideshow-controls">
+                <button class="hero-slideshow-dot active" onclick="goToHeroSlide(0)"></button>
+                <button class="hero-slideshow-dot" onclick="goToHeroSlide(1)"></button>
+                <button class="hero-slideshow-dot" onclick="goToHeroSlide(2)"></button>
+                <button class="hero-slideshow-dot" onclick="goToHeroSlide(3)"></button>
+                <button class="hero-slideshow-dot" onclick="goToHeroSlide(4)"></button>
             </div>
         </div>
 
@@ -1178,9 +1375,6 @@
         </section>
     </section>
 
-    <!-- Content sections continue here with same content... (truncated for brevity as they remain unchanged) -->
-    <!-- All the remaining section HTML from the original document goes here -->
-
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -1191,7 +1385,55 @@
     </footer>
 
     <script>
-        // Carousel functionality
+        // Hero Slideshow functionality
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroSlidesDots = document.querySelectorAll('.hero-slideshow-dot');
+        const totalHeroSlides = heroSlides.length;
+        let heroSlideInterval;
+
+        function showHeroSlide(index) {
+            heroSlides.forEach(slide => slide.classList.remove('active'));
+            heroSlidesDots.forEach(dot => dot.classList.remove('active'));
+            heroSlides[index].classList.add('active');
+            heroSlidesDots[index].classList.add('active');
+        }
+
+        function changeHeroSlide(direction) {
+            currentHeroSlide += direction;
+            if (currentHeroSlide >= totalHeroSlides) {
+                currentHeroSlide = 0;
+            } else if (currentHeroSlide < 0) {
+                currentHeroSlide = totalHeroSlides - 1;
+            }
+            showHeroSlide(currentHeroSlide);
+            resetHeroSlideInterval();
+        }
+
+        function goToHeroSlide(index) {
+            currentHeroSlide = index;
+            showHeroSlide(currentHeroSlide);
+            resetHeroSlideInterval();
+        }
+
+        function autoPlayHeroSlide() {
+            currentHeroSlide++;
+            if (currentHeroSlide >= totalHeroSlides) {
+                currentHeroSlide = 0;
+            }
+            showHeroSlide(currentHeroSlide);
+        }
+
+        function resetHeroSlideInterval() {
+            clearInterval(heroSlideInterval);
+            heroSlideInterval = setInterval(autoPlayHeroSlide, 5000);
+        }
+
+        // Start auto-play
+        heroSlideInterval = setInterval(autoPlayHeroSlide, 5000);
+        showHeroSlide(0);
+
+        // Team Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.team-member');
         const dots = document.querySelectorAll('.dot');
