@@ -227,9 +227,41 @@
         .hero-slideshow {
             position: relative;
             width: 100%;
-            height: 650px;
+            height: 700px;
             overflow: hidden;
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+
+        .hero-slideshow::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: white;
+            clip-path: ellipse(100% 100% at 50% 100%);
+            z-index: 2;
+        }
+
+        .wave-divider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
+            z-index: 3;
+        }
+
+        .wave-divider::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: white;
+            clip-path: ellipse(100% 100% at 50% 0%);
         }
 
         .hero-slide {
@@ -240,14 +272,7 @@
             height: 100%;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 1s ease-in-out, visibility 1s;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            gap: 4rem;
-            padding: 0 80px;
-            max-width: 1400px;
-            margin: 0 auto;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s;
         }
 
         .hero-slide.active {
@@ -256,80 +281,110 @@
             z-index: 1;
         }
 
-        .hero-slide-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(37, 99, 235, 0.75) 100%);
+            z-index: 1;
         }
 
-        .hero-slide-image img {
-            width: 450px;
-            height: 450px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 8px solid #F59E0B;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            animation: float 6s ease-in-out infinite;
+        .hero-slide-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: kenburns 20s ease-in-out infinite alternate;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        @keyframes kenburns {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
         }
 
         .hero-slide-content {
+            position: relative;
+            z-index: 2;
             color: white;
-            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 60px 60px 60px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .hero-slide-content h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             margin-bottom: 1rem;
-            font-weight: 800;
+            font-weight: 900;
             line-height: 1.1;
-            background: linear-gradient(135deg, #FCD34D 0%, #F59E0B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero-slide-content .doctor-title {
-            font-size: 1.8rem;
-            color: #60A5FA;
+            font-size: 2rem;
+            color: #FCD34D;
             margin-bottom: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.8s ease-out 0.2s backwards;
         }
 
         .hero-slide-content p {
-            font-size: 1.15rem;
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            opacity: 0.95;
-            color: #e5e7eb;
+            font-size: 1.25rem;
+            line-height: 1.9;
+            margin-bottom: 2.5rem;
+            color: white;
+            max-width: 800px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            animation: slideInUp 0.8s ease-out 0.4s backwards;
         }
 
         .cta-button {
             display: inline-block;
             background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
             color: white;
-            padding: 16px 40px;
+            padding: 18px 45px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+            box-shadow: 0 6px 25px rgba(239, 68, 68, 0.4);
+            animation: slideInUp 0.8s ease-out 0.6s backwards;
+            align-self: flex-start;
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(239, 68, 68, 0.4);
+            box-shadow: 0 10px 35px rgba(239, 68, 68, 0.5);
         }
 
         .hero-slideshow-controls {
             position: absolute;
-            bottom: 30px;
+            bottom: 80px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -341,10 +396,10 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             transition: all 0.3s;
-            border: 2px solid transparent;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
         .hero-slideshow-dot.active {
@@ -355,7 +410,7 @@
         }
 
         .hero-slideshow-dot:hover {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             transform: scale(1.2);
         }
 
@@ -363,29 +418,31 @@
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(245, 158, 11, 0.9);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
             color: white;
-            border: none;
-            width: 60px;
-            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            width: 65px;
+            height: 65px;
             border-radius: 50%;
-            font-size: 1.8rem;
+            font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         }
 
         .hero-slideshow-arrow:hover {
-            background: rgba(239, 68, 68, 0.9);
+            background: rgba(245, 158, 11, 0.9);
+            border-color: #FCD34D;
             transform: translateY(-50%) scale(1.1);
         }
 
-        .hero-slideshow-arrow.prev { left: 20px; }
-        .hero-slideshow-arrow.next { right: 20px; }
+        .hero-slideshow-arrow.prev { left: 30px; }
+        .hero-slideshow-arrow.next { right: 30px; }
 
         /* Content Sections */
         .content-section {
@@ -821,15 +878,12 @@
                 justify-content: center;
             }
 
-            .hero-slide {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 40px;
+            .hero-slide-content {
+                padding: 120px 40px 40px 40px;
             }
 
-            .hero-slide-image img {
-                width: 350px;
-                height: 350px;
+            .hero-slide-content h1 {
+                font-size: 3.5rem;
             }
         }
 
@@ -855,29 +909,33 @@
             }
 
             .hero-slideshow {
-                height: 550px;
+                height: 600px;
             }
 
-            .hero-slide {
-                padding: 20px;
-            }
-
-            .hero-slide-image img {
-                width: 280px;
-                height: 280px;
+            .hero-slide-content {
+                padding: 100px 30px 30px 30px;
             }
 
             .hero-slide-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.75rem;
             }
 
             .hero-slide-content .doctor-title {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
 
             .hero-slide-content p {
-                font-size: 1rem;
+                font-size: 1.05rem;
             }
+
+            .hero-slideshow-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .hero-slideshow-arrow.prev { left: 15px; }
+            .hero-slideshow-arrow.next { right: 15px; }
 
             nav ul {
                 flex-direction: column;
@@ -1080,12 +1138,12 @@
     <section id="home-section">
         <!-- Hero Slideshow -->
         <div class="hero-slideshow">
+            <div class="wave-divider"></div>
+            
             <button class="hero-slideshow-arrow prev" onclick="changeHeroSlide(-1)">❮</button>
             
             <div class="hero-slide active">
-                <div class="hero-slide-image">
-                    <img src="dr-schadt.jpg" alt="Dr. Emily Schadt">
-                </div>
+                <div class="hero-slide-bg" style="background-image: url('dr-schadt.jpg');"></div>
                 <div class="hero-slide-content">
                     <h1>Dr. Emily Schadt</h1>
                     <p class="doctor-title">Orthodontist</p>
@@ -1095,9 +1153,7 @@
             </div>
 
             <div class="hero-slide">
-                <div class="hero-slide-image">
-                    <img src="dr-hermann.jpg" alt="Dr. Dorit Hermann">
-                </div>
+                <div class="hero-slide-bg" style="background-image: url('dr-hermann.jpg');"></div>
                 <div class="hero-slide-content">
                     <h1>Dr. Dorit Hermann</h1>
                     <p class="doctor-title">Pediatric Dentist</p>
@@ -1107,9 +1163,7 @@
             </div>
 
             <div class="hero-slide">
-                <div class="hero-slide-image">
-                    <img src="dr-chaly.jpg" alt="Dr. Anne Chaly">
-                </div>
+                <div class="hero-slide-bg" style="background-image: url('dr-chaly.jpg');"></div>
                 <div class="hero-slide-content">
                     <h1>Dr. Anne Chaly</h1>
                     <p class="doctor-title">Pediatric Dentist</p>
@@ -1119,9 +1173,7 @@
             </div>
 
             <div class="hero-slide">
-                <div class="hero-slide-image">
-                    <img src="dr-marcovich.jpg" alt="Dr. Clarissa Marcovich">
-                </div>
+                <div class="hero-slide-bg" style="background-image: url('dr-marcovich.jpg');"></div>
                 <div class="hero-slide-content">
                     <h1>Dr. Clarissa Marcovich</h1>
                     <p class="doctor-title">Pediatric Dentist</p>
@@ -1131,9 +1183,7 @@
             </div>
 
             <div class="hero-slide">
-                <div class="hero-slide-image">
-                    <img src="dr-paul.jpg" alt="Dr. Jaby Paul">
-                </div>
+                <div class="hero-slide-bg" style="background-image: url('dr-paul.jpg');"></div>
                 <div class="hero-slide-content">
                     <h1>Dr. Jaby Paul</h1>
                     <p class="doctor-title">General Dentist</p>
