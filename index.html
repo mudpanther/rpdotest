@@ -229,6 +229,19 @@
             width: 100%;
             height: 700px;
             overflow: hidden;
+            margin-top: -1px;
+        }
+
+        .hero-slideshow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
+            z-index: 3;
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
 
         .hero-slideshow::after {
@@ -241,27 +254,6 @@
             background: white;
             clip-path: ellipse(100% 100% at 50% 100%);
             z-index: 2;
-        }
-
-        .wave-divider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(135deg, #FCD34D 0%, #FBBF24 100%);
-            z-index: 3;
-        }
-
-        .wave-divider::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 50px;
-            background: white;
-            clip-path: ellipse(100% 100% at 50% 0%);
         }
 
         .hero-slide {
@@ -288,7 +280,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.85) 0%, rgba(37, 99, 235, 0.75) 100%);
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.1) 100%);
             z-index: 1;
         }
 
@@ -315,7 +307,7 @@
             color: white;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 140px 60px 60px 60px;
+            padding: 120px 60px 60px 60px;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -328,7 +320,7 @@
             font-weight: 900;
             line-height: 1.1;
             color: white;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
             animation: slideInUp 0.8s ease-out;
         }
 
@@ -348,7 +340,7 @@
             color: #FCD34D;
             margin-bottom: 1.5rem;
             font-weight: 700;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
             animation: slideInUp 0.8s ease-out 0.2s backwards;
         }
 
@@ -358,7 +350,7 @@
             margin-bottom: 2.5rem;
             color: white;
             max-width: 800px;
-            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
             animation: slideInUp 0.8s ease-out 0.4s backwards;
         }
 
@@ -879,7 +871,7 @@
             }
 
             .hero-slide-content {
-                padding: 120px 40px 40px 40px;
+                padding: 100px 40px 40px 40px;
             }
 
             .hero-slide-content h1 {
@@ -913,7 +905,7 @@
             }
 
             .hero-slide-content {
-                padding: 100px 30px 30px 30px;
+                padding: 90px 30px 30px 30px;
             }
 
             .hero-slide-content h1 {
@@ -1138,8 +1130,6 @@
     <section id="home-section">
         <!-- Hero Slideshow -->
         <div class="hero-slideshow">
-            <div class="wave-divider"></div>
-            
             <button class="hero-slideshow-arrow prev" onclick="changeHeroSlide(-1)">❮</button>
             
             <div class="hero-slide active">
